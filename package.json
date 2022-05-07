@@ -1,0 +1,35 @@
+{
+  "name": "sugar-survey-viewer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/src/sugar-survey-viewer.js",
+  "module": "./lib/src/sugar-survey-viewer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:tsc && npm run build:rollup",
+    "serve": "node_modules/.bin/http-server -a 127.0.0.1 -c-1",
+    "build:tsc": "tsc --incremental",
+    "build:rollup": "rollup -c --environment NODE_ENV:production",
+    "dev": "npm run build:dev && npm-run-all --parallel 'watch:tsc -- --preserveWatchOutput' 'watch:test' 'serve -- -s'",
+    "watch:tsc": "tsc -w --incremental"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@open-wc/building-rollup": "^2.0.1",
+    "@types/three": "^0.136.1",
+    "deepmerge": "^4.2.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.63.0",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "http-server": "^14.0.0",
+    "lit-element": "^3.0.2",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "three": "^0.136.0"
+  }
+}

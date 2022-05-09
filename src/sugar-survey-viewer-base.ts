@@ -21,6 +21,8 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
     surveyfinished: boolean
     startManager: SurveyStartManager;
     localStorageManager: LocalStorageManager;
+    answers: Map<string, any> = new Map();
+
 
     get shadowRoot(): ShadowRoot {
         return this._root;
@@ -45,15 +47,18 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
         this._root = new DefaultRoot(this);
         let pageTemplate = survey_template.content.cloneNode(true) as HTMLTemplateElement;
         this.page = pageTemplate.querySelector(".main-container");
-        this.shadowRoot.appendChild(pageTemplate)
-
+        this.shadowRoot.appendChild(pageTemplate);
         let answerManager = new AnswerManager(this);
         this.startManager = new SurveyStartManager(this);
         this.localStorageManager = new LocalStorageManager(this);
         this.initializePages();
     }
 
+
+
     initializePages() {
+        this.pagesData = JSON.parse(pages);
+        this.initilizeJson();
         this.startManager.start();
         this.createPages();
         this.createLines();
@@ -61,6 +66,12 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
         this.dispatchEvent(new CustomEvent("pageinitilized"));
     }
 
+    initilizeJson() {
+        let json = this.localStorageManager.getanswersjson();
+        if (!json)
+            return;
+        this.answers = json;
+    }
 
     createLines() {
         let container = this.shadowRoot.querySelector(".slider-index-lines");
@@ -77,7 +88,7 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
 
     createPages() {
 
-        this.pagesData = JSON.parse(pages);
+
         let base = this;
         this.pagesData.forEach((pagedata: QuestionsData) => {
 

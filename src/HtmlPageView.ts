@@ -2,6 +2,7 @@ import checkbox_container_template from "./templates/checkbox-container";
 import question_container_template from "./templates/question-container";
 import form_container_template from "./templates/form-container";
 import SugarSurveyViewerElementBase from "./sugar-survey-viewer-base";
+import { asnwerType } from "./Localstoragemanager";
 
 export interface QuestionsData {
     question: string,
@@ -56,20 +57,10 @@ export class HTMLQuestionsPageView implements PageView {
 
         let question = this.pageTemplate.querySelector(".question");
         question.innerHTML = data.question;
+
+        this.page = this.pageTemplate.querySelector(".template");
         return this.pageTemplate;
     }
-
-    selectAnswer(element: HTMLElement) {
-        let allCheckedAnswer = this.page.querySelectorAll(".answerChecked.selected");
-        let length = allCheckedAnswer.length;
-        let maxLength = this.data.maxanswer;
-        element.classList.add("selected");
-    }
-
-    deSelectAnswer(element: HTMLElement) {
-        element.classList.remove("selected");
-    }
-
 
     createFormPage() {
 
@@ -77,9 +68,6 @@ export class HTMLQuestionsPageView implements PageView {
         let answers = this.pageTemplate.querySelector(".answers") as HTMLDivElement;
         let answerContainer = this.createFormInputContainer();
         answers.appendChild(answerContainer);
-
-        this.page = this.pageTemplate.querySelector(".template");
-        return this.pageTemplate;
     }
 
 
@@ -91,16 +79,22 @@ export class HTMLQuestionsPageView implements PageView {
 
         let answerline = this.createAnswerline();
         this.data.inputs.forEach((input, index) => {
-
+            let textInput = input.input;
             if ((index) % column == 0) {
                 answerline = this.createAnswerline();
             }
 
             let inputelement = document.createElement("textarea") as HTMLTextAreaElement;
+            inputelement.placeholder = textInput;
+            inputelement.className = input.classname;
+
+            let value = this.inputFieldIsFilled(textInput);
+            if (value)
+                inputelement.value = value;
+
             inputelement.addEventListener("input", this.getInputElement.bind(this));
             inputelement.setAttribute("input-index", index + "");
-            inputelement.placeholder = input.input;
-            inputelement.className = input.classname;
+
 
             answerline.appendChild(inputelement);
             container.appendChild(answerline);
@@ -123,17 +117,18 @@ export class HTMLQuestionsPageView implements PageView {
         this.pageTemplate = question_container_template.content.cloneNode(true) as HTMLTemplateElement;
 
         this.data.answers.forEach((answer, index) => {
-            if ((index) % column == 0) {
+
+            if ((index) % column == 0)
                 answerline = this.createAnswerline();
-            }
+
             let answers = this.pageTemplate.querySelector(".answers") as HTMLDivElement;
             let answerContainer = this.createAnswerContainer(answer.answer, answer.description, index + "");
             answerContainer.addEventListener("click", this.handleAnswerSelect.bind(this));
+
             answerline.appendChild(answerContainer);
             answers.appendChild(answerline);
         })
-        this.page = this.pageTemplate.querySelector(".template");
-        return this.pageTemplate;
+
     }
 
 
@@ -161,10 +156,14 @@ export class HTMLQuestionsPageView implements PageView {
         let check = document.createElement("div") as HTMLDivElement;
         check.className = "answerChecked"
 
+        let checkIsAnswered = this.checkIsSelected(text);
+        if (checkIsAnswered)
+            check.classList.add("selected")
+
+
         container.appendChild(image);
         container.appendChild(span);
         container.appendChild(check);
-
         return container;
     }
 
@@ -177,9 +176,6 @@ export class HTMLQuestionsPageView implements PageView {
 
         let checkboxOptionCon = this.createCheckboxOptions(data);
         checkboxanswercontainer.appendChild(checkboxOptionCon);
-
-        this.page = this.pageTemplate.querySelector(".template");
-        return this.pageTemplate;
     }
 
 
@@ -188,7 +184,6 @@ export class HTMLQuestionsPageView implements PageView {
         container.className = "filters"
 
         filteroptions.forEach((filterOption, index) => {
-
             let input = document.createElement("input") as HTMLInputElement;
             input.className = "filterinput";
             input.placeholder = filterOption.filter;
@@ -209,22 +204,22 @@ export class HTMLQuestionsPageView implements PageView {
 
         data.answers.forEach((answer, index) => {
 
-            let checkContainer = document.createElement("div") as HTMLDivElement;
             let input = document.createElement("input") as HTMLInputElement;
+            input.type = "checkbox";
+            input.className = "checkboxinput";
+            input.checked = this.checkIsSelected(answer.answer);
 
             input.setAttribute("answer-index", index + "")
-            input.className = "checkboxinput";
-            input.type = "checkbox";
             input.addEventListener("click", this.handlecheckboxinput.bind(this));
 
             let span = document.createElement("span") as HTMLInputElement;
             span.className = "checkboxtext";
             span.innerHTML = answer.answer;
 
+            let checkContainer = document.createElement("div") as HTMLDivElement;
             checkContainer.appendChild(input);
             checkContainer.appendChild(span);
             container.appendChild(checkContainer);
-
         });
         return container;
     }
@@ -235,24 +230,22 @@ export class HTMLQuestionsPageView implements PageView {
         let checked = element.checked;
         let answerIndex = element.getAttribute("answer-index");
         let answer = this.data.answers[answerIndex].answer;
-
         if (checked) {
             this.base.dispatchEvent(new CustomEvent("setanswer", { detail: [this.data.question, answer] }));
             return;
         }
         this.base.dispatchEvent(new CustomEvent("removeanswer", { detail: [this.data.question, answer] }));
-
     }
 
 
     handleAnswerSelect(event: Event) {
 
         let element = event.currentTarget as HTMLElement;
+        let answerIndex = element.getAttribute("answer-index");
+
         let answerChecked = element.querySelector(".answerChecked") as HTMLElement
         let classList = answerChecked.classList;
         let isSelected = classList.contains("selected");
-
-        let answerIndex = element.getAttribute("answer-index");
         let answer = this.data.answers[answerIndex].description;
 
         if (!isSelected) {
@@ -264,6 +257,42 @@ export class HTMLQuestionsPageView implements PageView {
         this.deSelectAnswer(answerChecked);
     }
 
+    selectAnswer(element: HTMLElement) {
+        //Do we have maximum?
+        let allCheckedAnswer = this.page.querySelectorAll(".answerChecked.selected");
+        let length = allCheckedAnswer.length;
+        let maxLength = this.data.maxanswer;
+        element.classList.add("selected");
+    }
 
+    deSelectAnswer(element: HTMLElement) {
+        element.classList.remove("selected");
+    }
+
+
+    checkIsSelected(answer: string) {
+
+        let question = this.data.question;
+        let answeroflocalstorage = this.base.localStorageManager.getJsonKeyFromLocalStorage(question) as any;
+        let index = answeroflocalstorage.indexOf(answer);
+
+        if (index == -1)
+            return false;
+
+        this.base.dispatchEvent(new CustomEvent("setanswer", { detail: [this.data.question, answer] }));
+        return true;
+    }
+
+    inputFieldIsFilled(input: string) {
+
+        let value = this.base.localStorageManager.getJsonKeyFromLocalStorage(input) as any;
+        console.log("hi! ", value);
+
+        if (!value)
+            return null;
+
+        this.base.dispatchEvent(new CustomEvent("setInputAnswer", { detail: [this.data.question, value] }));
+        return value;
+    }
 
 }

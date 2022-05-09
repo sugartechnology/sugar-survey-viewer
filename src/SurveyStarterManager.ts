@@ -47,7 +47,6 @@ export class SurveyStartManager {
 
 
     finishSurvey() {
-
         this.showLastPage();
         this.hideSurveyContainer();
         this.base.surveyfinished = true;

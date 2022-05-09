@@ -6,8 +6,6 @@ export interface asnwerType {
 export class AnswerManager {
 
     base: SugarSurveyViewerElementBase;
-    answers: Map<string, any> = new Map();
-    localstoragename: string = "simurgsurvey";
 
     constructor(base: SugarSurveyViewerElementBase) {
         this.base = base;
@@ -22,19 +20,14 @@ export class AnswerManager {
         let key = detail[0];
         let value = detail[1];
 
-        let values = this.answers.get(key) ? this.answers.get(key) : [];
+        let values = this.base.answers.get(key) ? this.base.answers.get(key) : [];
         values.push(value);
-        this.answers.set(key, values)
+        let uniqValues = [...new Set(values)];
 
-        console.log("answer", this.answers)
+        this.base.answers.set(key, uniqValues)
         this.updateLocalStorage();
-    }
 
-    deleteAnswer(data: MouseEvent) {
-        let detail = data.detail;
-        this.removeAnswer(detail[0], detail[1]);
-        this.updateLocalStorage();
-        console.log("answer", this.answers)
+        console.log("this.baeans", this.base.answers);
     }
 
     getInputAnswerFromUser(data: MouseEvent) {
@@ -42,23 +35,31 @@ export class AnswerManager {
         let detail = data.detail as unknown as asnwerType;
         let key = detail[0];
         let value = detail[1];
-        this.answers.set(key, value);
+        this.base.answers.set(key, value);
+        this.updateLocalStorage();
+    }
+
+    deleteAnswer(data: MouseEvent) {
+        let detail = data.detail;
+        this.removeAnswer(detail[0], detail[1]);
+        this.updateLocalStorage();
     }
 
     removeAnswer(key: string, value: string) {
 
-        let values = this.answers.get(key) ? this.answers.get(key) : [];
+        let values = this.base.answers.get(key) ? this.base.answers.get(key) : [];
         const index = values.indexOf(value);
 
         if (index > -1) {
             values.splice(index, 1);
-            this.answers.set(key, values)
+            this.base.answers.set(key, values)
         }
+        this.updateLocalStorage();
     }
 
     updateLocalStorage() {
-        this.base.dispatchEvent(new CustomEvent("update-local-storage", { detail: this.answers }))
-
+        this.base.dispatchEvent(new CustomEvent("update-local-storage", { detail: this.base.answers }))
     }
+
 
 }

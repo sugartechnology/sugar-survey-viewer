@@ -5,6 +5,7 @@ import SugarSurveyViewerElementBase from "./sugar-survey-viewer-base";
 import { asnwerType } from "./Localstoragemanager";
 
 export interface QuestionsData {
+    title: string,
     question: string,
     column: number;
     answers: [{ answer: string, description: string }];
@@ -92,8 +93,8 @@ export class HTMLQuestionsPageView implements PageView {
             if (value)
                 inputelement.value = value;
 
+            inputelement.setAttribute("key", textInput);
             inputelement.addEventListener("input", this.getInputElement.bind(this));
-            inputelement.setAttribute("input-index", index + "");
 
 
             answerline.appendChild(inputelement);
@@ -105,9 +106,8 @@ export class HTMLQuestionsPageView implements PageView {
     getInputElement(event: MouseEvent) {
 
         let element = event.currentTarget as HTMLInputElement;
-        let inputIndex = element.getAttribute("input-index");
-        let question = this.data.inputs[inputIndex].input;
-        this.base.dispatchEvent(new CustomEvent("setInputAnswer", { detail: [question, element.value] }));
+        let key = element.getAttribute("key");
+        this.base.dispatchEvent(new CustomEvent("setInputAnswer", { detail: [key, element.value] }));
     }
 
     createPageData() {
@@ -180,15 +180,27 @@ export class HTMLQuestionsPageView implements PageView {
 
 
     createFilterContainer(filteroptions: any) {
+
         let container = document.createElement("div") as HTMLDivElement;
         container.className = "filters"
 
-        filteroptions.forEach((filterOption, index) => {
-            let input = document.createElement("input") as HTMLInputElement;
-            input.className = "filterinput";
-            input.placeholder = filterOption.filter;
-            container.appendChild(input);
+        filteroptions.forEach((filterOption) => {
+
+
+            let key = filterOption.filter;
+            let inputelemment = document.createElement("input") as HTMLInputElement;
+            inputelemment.className = "filterinput";
+            inputelemment.placeholder = key;
+
+            inputelemment.addEventListener("input", this.getInputElement.bind(this));
+            inputelemment.setAttribute("key", key);
+            let value = this.inputFieldIsFilled(filterOption.filter);
+            if (value)
+                inputelemment.value = value;
+
+            container.appendChild(inputelemment);
         });
+
         let filterbutton = document.createElement("button") as HTMLButtonElement;
         filterbutton.className = "button filterbutton";
         filterbutton.innerHTML = "Filtrele";
@@ -258,10 +270,14 @@ export class HTMLQuestionsPageView implements PageView {
     }
 
     selectAnswer(element: HTMLElement) {
-        //Do we have maximum?
         let allCheckedAnswer = this.page.querySelectorAll(".answerChecked.selected");
         let length = allCheckedAnswer.length;
         let maxLength = this.data.maxanswer;
+
+        if (length >= maxLength) {
+            alert("max :" + maxLength);
+            return;
+        }
         element.classList.add("selected");
     }
 
@@ -286,13 +302,12 @@ export class HTMLQuestionsPageView implements PageView {
     inputFieldIsFilled(input: string) {
 
         let value = this.base.localStorageManager.getJsonKeyFromLocalStorage(input) as any;
-        console.log("hi! ", value);
-
-        if (!value)
+        if (!value || value.length == 0)
             return null;
 
         this.base.dispatchEvent(new CustomEvent("setInputAnswer", { detail: [this.data.question, value] }));
         return value;
     }
+
 
 }

@@ -105,8 +105,6 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
     }
 
 
-
-
     initializeNavigation() {
 
         const prev = this.shadowRoot.querySelector('.prev');
@@ -123,6 +121,7 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
     movePageByDirection(direction: string) {
 
         let index = this.nextIndex(direction);
+        index = this.getFilteredPageIndex(index, direction);
         this.movePageToIndex(index);
     }
 
@@ -135,7 +134,6 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
 
         if (index == lastIndex)
             this.replaceNextButton();
-
     }
 
     replaceNextButton() {
@@ -182,14 +180,24 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
 
         if (!direction)
             return 1;
-
         let totalpages = this.pageElements.length;
         let index = this.selectedIndex;
-
         index = direction == 'next' ? index + 1 : index - 1;
         index = index >= totalpages ? 0 : index;
         index = index < 0 ? totalpages - 1 : index;
         return index;
+    }
+
+    getFilteredPageIndex(index: number, direction: string) {
+
+        let page = this.pagesData[index];
+        let title = page.title;
+        let filteredPages = this.answers.get("filteredpages");
+        if (!filteredPages || !filteredPages.includes(title))
+            return index;
+
+        this.selectedIndex = index;
+        return this.nextIndex(direction);
     }
 
     moveToEndOfPages() {

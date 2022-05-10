@@ -2,18 +2,24 @@ import checkbox_container_template from "./templates/checkbox-container";
 import question_container_template from "./templates/question-container";
 import form_container_template from "./templates/form-container";
 import SugarSurveyViewerElementBase from "./sugar-survey-viewer-base";
-import { asnwerType } from "./Localstoragemanager";
 
 export interface QuestionsData {
     title: string,
     question: string,
     column: number;
-    answers: [{ answer: string, description: string }];
+    answers: [{
+        answer: string,
+        description: string,
+        skippage: string
+
+    }];
+    filter: boolean,
     maxanswer: number;
     type: string,
     filteroptions: [{ filter: string }],
     inputs: [{ input: string, classname: string }]
 }
+
 
 export interface PageView {
 
@@ -124,12 +130,11 @@ export class HTMLQuestionsPageView implements PageView {
             let answers = this.pageTemplate.querySelector(".answers") as HTMLDivElement;
             let answerContainer = this.createAnswerContainer(answer.answer, answer.description, index + "");
             answerContainer.addEventListener("click", this.handleAnswerSelect.bind(this));
-
             answerline.appendChild(answerContainer);
             answers.appendChild(answerline);
         })
-
     }
+
 
 
     createAnswerline() {
@@ -258,33 +263,50 @@ export class HTMLQuestionsPageView implements PageView {
         let answerChecked = element.querySelector(".answerChecked") as HTMLElement
         let classList = answerChecked.classList;
         let isSelected = classList.contains("selected");
-        let answer = this.data.answers[answerIndex].description;
-
+        let answer = this.data.answers[answerIndex];
+        this.createFilterBy(answer.skippage, isSelected);
         if (!isSelected) {
-            this.base.dispatchEvent(new CustomEvent("setanswer", { detail: [this.data.question, answer] }));
-            this.selectAnswer(answerChecked);
+
+            let isAnswerSelectable = this.isAnswerSelectable();
+            if (!isAnswerSelectable)
+                return;
+            this.base.dispatchEvent(new CustomEvent("setanswer", { detail: [this.data.question, answer.description] }));
+            answerChecked.classList.add("selected");
             return;
         }
-        this.base.dispatchEvent(new CustomEvent("removeanswer", { detail: [this.data.question, answer] }));
+        this.base.dispatchEvent(new CustomEvent("removeanswer", { detail: [this.data.question, answer.description] }));
         this.deSelectAnswer(answerChecked);
     }
 
-    selectAnswer(element: HTMLElement) {
+
+    isAnswerSelectable() {
+
         let allCheckedAnswer = this.page.querySelectorAll(".answerChecked.selected");
         let length = allCheckedAnswer.length;
         let maxLength = this.data.maxanswer;
-
         if (length >= maxLength) {
             alert("max :" + maxLength);
-            return;
+            return false;
         }
-        element.classList.add("selected");
+        return true;
     }
+
 
     deSelectAnswer(element: HTMLElement) {
         element.classList.remove("selected");
     }
 
+    createFilterBy(filter: string, isSelectedbefore: boolean) {
+
+        if (!filter)
+            return;
+        if (isSelectedbefore) {
+            console.log("removing");
+            this.base.dispatchEvent(new CustomEvent("removeanswer", { detail: ["filteredpages", filter] }));
+            return;
+        }
+        this.base.dispatchEvent(new CustomEvent("setanswer", { detail: ["filteredpages", filter] }));
+    }
 
     checkIsSelected(answer: string) {
 

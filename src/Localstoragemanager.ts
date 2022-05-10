@@ -14,6 +14,8 @@ export class LocalStorageManager {
         this.base.addEventListener("update-local-storage", this.setAnswerToLocalStorage.bind(this))
         this.base.addEventListener("pageinitilized", this.pageloaded.bind(this));
         this.base.addEventListener("page-changed", this.setpageindex.bind(this));
+        this.base.addEventListener("finishsurvey", this.onFinishSurvey.bind(this), false);
+
     }
 
     setKey(key: string, value: string) {
@@ -77,4 +79,8 @@ export class LocalStorageManager {
         this.base.movePageToIndex(index);
     }
 
+    onFinishSurvey() {
+        localStorage.removeItem(this.localindexstoragepageindex)
+        localStorage.removeItem(this.localstorageanswerjson)
+    }
 }

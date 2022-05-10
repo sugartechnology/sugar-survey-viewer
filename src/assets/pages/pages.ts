@@ -49,11 +49,13 @@ export const pages = `[
         "answers": [
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page4/1.png",
-                "description": "Modern"
+                "description": "Modern",
+                "skippage":"page6"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page4/2.png",
-                "description": "Klasik"
+                "description": "Klasik",
+                "skippage": "page5"
             }
         ]
     } ,

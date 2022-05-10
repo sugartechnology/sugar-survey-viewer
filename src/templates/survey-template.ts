@@ -54,6 +54,7 @@ survey_template.innerHTML = `
 
         .answerline{
           flex-direction: column;
+          display: contents;
         }
         .navigators{
           margin: 50px auto 100px !important;
@@ -65,6 +66,8 @@ survey_template.innerHTML = `
           width: 100%;
         }
 
+    
+      
       }
 
   
@@ -134,6 +137,7 @@ survey_template.innerHTML = `
         color: #1D1D1B;
         width: 100%;
         margin:40px 0px 80px;
+        text-align: center;
       }
   
       .question,

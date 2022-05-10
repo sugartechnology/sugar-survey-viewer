@@ -235,15 +235,15 @@ export const pages = `[
         "maxanswer":"0",
         "question": "Neredeyse bitirdiniz. Lütfen aşağıdaki alanları doldurun:",
         "inputs":[
-            {"input":"Ad :", "classname":"formInput" },
-            {"input":"Soyad :" , "classname":"formInput"},
+            {"input":"Ad", "classname":"formInput" },
+            {"input":"Soyad" , "classname":"formInput"},
 
             {
-            "input":"Email :",
+            "input":"Email",
             "classname":"formInput"
             },
 
-            {"input":"Telefon :",
+            {"input":"Telefon",
             "classname":"formInput"
             }
         ]

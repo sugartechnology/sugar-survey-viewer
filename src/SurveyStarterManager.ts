@@ -1,9 +1,11 @@
-import SugarSurveyViewerElementBase from "./sugar-survey-viewer-base";
+import { QuestionsData } from "./HtmlPageView";
+import SugarSurveyViewerElementBase, { BASE_SERVICE_API_URL } from "./sugar-survey-viewer-base";
 import starter_container_template from "./templates/start-container";
 
 export interface asnwerType {
     answers: [{ answer: string, description: string }];
 }
+
 export class SurveyStartManager {
 
     base: SugarSurveyViewerElementBase;
@@ -49,6 +51,7 @@ export class SurveyStartManager {
     finishSurvey() {
         this.showLastPage();
         this.hideSurveyContainer();
+        this.sendSurveyData();
         this.base.surveyfinished = true;
     }
 
@@ -78,7 +81,6 @@ export class SurveyStartManager {
     }
 
 
-
     showSurveyContainer() {
         let page = this.base.shadowRoot.querySelector(".surveycontainer") as HTMLDivElement;
         page.style.display = "block";
@@ -94,4 +96,29 @@ export class SurveyStartManager {
         page.style.display = "flex";
     }
 
+    sendSurveyData() {
+
+        const answerObject = Object.fromEntries(this.base.answers);
+        let answers = JSON.stringify(answerObject);
+        let fullName = this.base.answers.get("Ad") + " " + this.base.answers.get("Soyad");
+        let email = this.base.answers.get("Email");
+        let phoneNumber = this.base.answers.get("Telefon");
+        let survey = {
+            fullName: fullName,
+            answer: answers,
+            email: email,
+            phoneNumber: phoneNumber,
+        }
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", BASE_SERVICE_API_URL + '/api/survey/save');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(survey));
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                if ((this.status == 200) && (this.status < 300)) {
+                    console.info("Request completed");
+                }
+            }
+        };
+    }
 }

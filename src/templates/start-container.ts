@@ -44,6 +44,25 @@ starter_container_template.innerHTML = `
       width: 860px;
     }
 
+    @media only screen and  (min-width: 320px) and (max-device-width : 568px)  {
+      .titleText {
+        width: 860px;
+        width: 100%; 
+        font-size: 1.3em;
+        
+    }
+      .starterImage {
+        width: 100%;
+        min-height: 40vh;
+        opacity: .50;
+      }
+    .title {
+      font-size: 1.3em;
+      }
+    }
+
+      
+
     .startbutton {
       background: transparent;
       height: 50px;
@@ -88,7 +107,7 @@ starter_container_template.innerHTML = `
 
     <div class="firstpage ">
       <img class="starterImage" src="https://sugar.mncdn.com/simurgsurvey/starter/surveystart-min.png">
-      <div class="imagetext center">
+      <div class="imagetext">
         <span class="title">Ücretsiz Sanat Danışmanlığı</span>
         <span class="titleText"> Satın almanız için özenle seçilmiş sanat eserlerini bulmak için sanat
           danışmanlarımızdan rehberlik isteyin.</span>

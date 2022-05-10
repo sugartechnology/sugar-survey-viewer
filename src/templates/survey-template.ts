@@ -8,9 +8,7 @@ survey_template.innerHTML = `
     .body {
         width: auto;
       }
-  
-      @media only screen and (max-width: 700px) {}
-  
+      
       .navigators,
       .slider-index-lines {
         display: flex;
@@ -51,10 +49,35 @@ survey_template.innerHTML = `
         margin-left: auto;
         margin-right: auto;
       }
+
+      @media only screen and  (min-width: 320px) and (max-device-width : 568px)  {
+
+        .answerline{
+          flex-direction: column;
+        }
+        .navigators{
+          margin: 50px auto 100px !important;
+        }
+        .slider-index-lines{
+          margin: 30px auto 0px;
+        }
+        .answerContainer{
+          width: 100%;
+        }
+
+      }
+
   
   
       .navigators {
         margin: 1em 8em 1em;
+        width: 100%;
+        display: flex;
+        margin: 50px auto 100px;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        align-items: center;
       }
   
       .navigators div {
@@ -68,6 +91,7 @@ survey_template.innerHTML = `
         font-size: small !important;
         color: rgb(138, 138, 137);
         cursor:pointer;
+        text-transform: uppercase
       }
   
   
@@ -103,16 +127,13 @@ survey_template.innerHTML = `
        line-height:14px;
        font-size:12px;
       }
-      //question template
-      .questions {
-        margin-top: 4vh;
-      }
-  
+
       .question {
         font-size: 25px;
         line-height: 30px;
         color: #1D1D1B;
         width: 100%;
+        margin:40px 0px 80px;
       }
   
       .question,
@@ -126,7 +147,6 @@ survey_template.innerHTML = `
   
       .answers {
         flex-wrap: wrap;
-        margin: 1em 8em 1em;
       }
   
       .answerContainer {
@@ -248,7 +268,7 @@ survey_template.innerHTML = `
         </button>
       </div>
       <div class="toend">
-        <span class="toend center toendtext">Sona Atla</span>
+        <a class="toend toendtext">Sona Atla</a>
       </div>
       <div class="next">
         <button class="button">

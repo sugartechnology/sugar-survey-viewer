@@ -2,11 +2,11 @@ const cquestion_container_template = document.createElement('template');
 cquestion_container_template.innerHTML = `   
     <div class="template">
     
-    <div class="questions">
+
 
     <span class="question"></span>
 
-    </div>
+
 
     <div class="answers">
  

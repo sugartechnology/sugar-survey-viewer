@@ -7,7 +7,7 @@ import { LocalStorageManager } from './Localstoragemanager';
 import { SurveyStartManager } from './SurveyStarterManager';
 import survey_template from './templates/survey-template';
 
-export const BASE_SERVICE_API_URL = "http://localhost:7990";
+export const BASE_SERVICE_API_URL = "https://cdn.sugartech.io";
 export default class SugarSurveyViewerElementBase extends UpdatingElement {
 
     private _root: ShadowRoot;

@@ -3,20 +3,37 @@ starter_container_template.innerHTML = `
 
     <style>
 
-    .firstpage {
+    .firstpage, .firstFullpage {
       background: black;
+      background-repeat: no-repeat;
       display: flex;
       flex-direction: column;
+      width: 100%;
+      opacity: 0.8;
+      height: 100%;
+      justify-content: center;
+      display:none;
+      top: 100%;
+
     }
+
+    .firstFullpage{
+      height: 100vh !important;
+      background: white;
+  
+      background: center;
+    }
+
+    .firstFullpage button{
+      border: 1px solid black;
+    }
+
     .maincontainer {
       font-family: 'Times New Roman', Times, serif;
       flex-direction: column;
       text-align: center;
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
+      width: 100%;
+
     }
 
 
@@ -24,15 +41,14 @@ starter_container_template.innerHTML = `
       width: 100%;
       opacity: .50;
     }
+
     .imagetext {
-      position: absolute;
       z-index: 11;
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
 
     .title {
       font-size: 50px;
@@ -42,6 +58,9 @@ starter_container_template.innerHTML = `
     .titleText {
       font-size: 30px;
       width: 860px;
+    }
+    .firstFullpage span{
+      color:black !important;
     }
 
     @media only screen and  (min-width: 320px) and (max-device-width : 568px)  {
@@ -82,6 +101,7 @@ starter_container_template.innerHTML = `
       flex-direction: column;
       color: #1D1D1B !important;
       align-items: center;
+      transform: translateY(100%);
     }
 
     .secondpagetext{
@@ -100,20 +120,33 @@ starter_container_template.innerHTML = `
       width: 1500px;
       max-width: 100%;
       align-items: center;
+      transform: translateY(100%);
     }
     </style>
 
-    <div class="maincontainer">
+  <div class="maincontainer">
 
-    <div class="firstpage ">
-      <img class="starterImage" src="https://sugar.mncdn.com/simurgsurvey/starter/surveystart-min.png">
+    <div class="firstpage" style="background-repeat: no-repeat; transform: translateY(100%);">
+   
       <div class="imagetext">
-        <span class="title">Ücretsiz Sanat Danışmanlığı</span>
-        <span class="titleText"> Satın almanız için özenle seçilmiş sanat eserlerini bulmak için sanat
-          danışmanlarımızdan rehberlik isteyin.</span>
+        <span class="title"></span>
+        <span class="titleText"></span>
         <button class="startbutton"><span class="startbuttontext center">Başla</span></button>
       </div>
+
+      <div style="position:absolute;width:100%;height: 100%;background:#000000;left: 0;top: 0;opacity: 0.6; z-index:-1;"></div>
     </div>
+
+    <div class="firstFullpage"  style="background-repeat: no-repeat;">
+   
+    <div class="imagetext">
+      <span class="title"></span>
+      <span class="titleText"></span>
+      <button class="startbutton"><span class="startbuttontext center">Başla</span></button>
+    </div>
+
+    <div style="position:absolute;width:100%;height: 100vh;background: white;left: 0;top: 0;opacity: 0.6;z-index:-1;"></div>
+  </div>
 
     <div class="secondpage" style="display:none">
 
@@ -124,7 +157,6 @@ starter_container_template.innerHTML = `
         Anketi doldurmanızın ardından, sanat danışmanlarımız kısa sürede içinde sizinle iletişime geçecektir.
         Başlayalım!</span>
       <button class="startbutton"><span class="startbuttontext center">Başla</span></button>
-
     </div>
 
   <div class="lastpage" style="display:none">
@@ -135,6 +167,7 @@ starter_container_template.innerHTML = `
     <button class="startbutton"><span class="startbuttontext center">Evinde Gör uygulamasını kullan</span></button>
   </div>
   
+
   </div>
  `;
 

@@ -10,7 +10,12 @@ export class LocalStorageManager {
     public localindexstoragepageindex: string = "localindestoragepageindex";
 
     constructor(base: SugarSurveyViewerElementBase) {
+
         this.base = base;
+        let pagetype = this.base.getAttribute("type");
+        this.localstorageanswerjson = pagetype + "-" + this.localstorageanswerjson;
+        this.localstorageanswerjson = pagetype + "-" + this.localstorageanswerjson;
+        this.setKey("surveytype", pagetype);
         this.base.addEventListener("update-local-storage", this.setAnswerToLocalStorage.bind(this))
         this.base.addEventListener("pageinitilized", this.pageloaded.bind(this));
         this.base.addEventListener("page-changed", this.setpageindex.bind(this));

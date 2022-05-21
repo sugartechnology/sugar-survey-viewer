@@ -65,13 +65,21 @@ survey_template.innerHTML = `
         .answerContainer{
           width: 100%;
         }
+        .checkboxes {
 
-    
-      
+          margin-left: unset !important;
+
+        }
+        .filters{
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
+        }
+        .messagetext{
+          width: 100% !important;
+        }
       }
 
-  
-  
       .navigators {
         margin: 1em 8em 1em;
         width: 100%;
@@ -99,24 +107,23 @@ survey_template.innerHTML = `
   
   
       .button {
-
-        background-color: #3C3C3B;
-        font-size: 20px;
-        line-height: 30px;
-        height: 40px;
-        background-color: #3C3C3B;
-        color: #fff;
-        min-width: 80px;
-        cursor: pointer;
-        display: inline-block;
-        margin: 0;
-        outline: none;
-        overflow: hidden;
-        text-transform: none;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        color:white;
+      background-color: #3C3C3B;
+       font-size: 18px; 
+      line-height: 30px;
+      height: 40px;
+      background-color: #3C3C3B;
+      color: #fff;
+      min-width: 80px;
+      cursor: pointer;
+      display: inline-block;
+      margin: 0;
+      outline: none;
+      overflow: hidden;
+      text-transform: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      color: white;
       }
   
       .button:hover,
@@ -146,7 +153,6 @@ survey_template.innerHTML = `
         display: grid;
         justify-items: center;
         font-family: arial;
-        font-size: 1.25em;
       }
   
       .answers {
@@ -164,11 +170,9 @@ survey_template.innerHTML = `
         position: relative;
         break-inside: avoid;
         align-self: flex-end;
+        gap:1em;
       }
-  
-      .answerText {
-        margin: 1em;
-      }
+
 
       .templatecontainer{
         gap: 2em;
@@ -209,6 +213,9 @@ survey_template.innerHTML = `
     }
     .filterinput {
       height: 3em;
+      text-align: center;
+      margin-left: 5px;
+      margin-right: 5px;
     }
 
     .checkboxes {
@@ -216,22 +223,28 @@ survey_template.innerHTML = `
       flex-direction: column;
       font-size: 18px;
       color: gray;
-      margin: 1em;
+      margin-left: 8em;
       padding: 1em;
+      float: left;
     }
 
     .checkboxinput {
       transform: scale(1.5);
-      margin-right: 1em !important;
+      margin-right: 1em !important;p
     }
     .checkboxanswercontainer {
       margin: 1em;
-      text-align: center;
+      font-family: sans-serif;
+      font-size:15px;
     }
 
     .filterbutton {
       background: dimgray;
       border: none;
+      margin-left: 5px;
+      height: 3em;
+      font-size: 15px;
+
     }
 
     .formInput{

@@ -1,63 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>&lt;slide-viewer&gt;</title>
-    <meta charset="utf-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <style>
-
-    </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-
-<style>
-    body {
-        font-size: 10px;
-    }
-
-    #sugarSurveyViewer {
-
-        -webkit-box-pack: justify;
-        justify-content: space-between;
-        flex: 1 1 0%;
-        width: 100%;
-        min-height: 400px;
-        padding: 0px 30px;
-    }
-
-    @media (max-width: 1256px) {
-        .sugarSurveyViewer {
-            padding: 0px 15px;
-        }
-    }
-</style>
-
-<body>
-    <sugar-survey-viewer id="sugarSurveyViewer" type="paintingorder" type="form" pagedata='
-  [
+export const pages = `[
 
     {
         "title": "Page0",
         "type": "starter",
         "welcomePage": "false",
-        "img": "https://sugar.mncdn.com/simurgsurvey/starter/surveystart-min.png",
-        "skippage": "Page1",
-        "classname": "firstpage",
-        "titleText":" Satın almanız için özenle seçilmiş sanat eserlerini bulmak için sanat danışmanlarımızdan rehberlik isteyin",
-        "title":"Ücretsiz Sanat Danışmanlığı"
+        "img": "https://sugar.mncdn.com/simurgsurvey/starter/oilpaintingstarter.png",
+        "classname": "firstFullpage",
+        "title":"Mekanına uygun eserleri seçmeye başla!",
+        "titleText":""
     },
 
     {
         "title": "Page1",
-        "type": "starter",
-        "classname": "secondpage"
-    },
-
-
-    {
-        "title": "Page3",
         "column": "4",
         "type": "page",
         "maxanswer": "8",
@@ -98,7 +52,7 @@
         ]
     },
     {
-        "title": "page4",
+        "title": "page2",
         "column": "2",
         "type": "page",
         "maxanswer": "1",
@@ -107,7 +61,7 @@
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page4/1.png",
                 "description": "Modern",
-                "skippage": "page6"
+                "skippage": "page4"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page4/2.png",
@@ -117,7 +71,7 @@
         ]
     },
     {
-        "title": "page5",
+        "title": "page4",
         "column": "5",
         "type": "page",
         "maxanswer": "3",
@@ -166,7 +120,7 @@
         ]
     },
     {
-        "title": "page6",
+        "title": "page5",
         "column": "5",
         "type": "page",
         "maxanswer": "3",
@@ -215,7 +169,7 @@
         ]
     },
     {
-        "title": "page7",
+        "title": "page6",
         "column": "3",
         "type": "page",
         "maxanswer": "3",
@@ -265,6 +219,7 @@
         "column": "3",
         "type": "chechboxquestionspage",
         "maxanswer": "12",
+        "lastpage":"true",
         "question": "Fiyat Aralığı",
         "filteroptions": [
             { "filter": "Ilk fiyat" },
@@ -285,53 +240,8 @@
             }
         ]
     },
-    {
-        "title": "page10",
-        "column": "2",
-        "type": "form",
-        "maxanswer": "12",
-        "question": "Neredeyse bitirdiniz. Lütfen aşağıdaki alanları doldurun:",
-        "inputs": [
-            { "input": "Ad", "classname": "formInput" },
-            { "input": "Soyad", "classname": "formInput" },
-
-            {
-                "input": "Email",
-                "classname": "formInput"
-            },
-
-            {
-                "input": "Telefon",
-                "classname": "formInput"
-            }
-        ]
-    },
-    {
-        "title": "page11",
-        "column": "2",
-        "type": "messageform",
-        "maxanswer": "0",
-        "lastpage": "true",
-        "question": "Resimde yer almasını istediğiniz renkleri ve ayrıntıları gönderiniz.",
-        "inputs": [
-            {
-                "input": "Buraya yaz... ",
-                "classname": "messagetext"
-            }
-        ]
-    },
-    {
-        "title": "Page12",
-        "type": "starter",
-        "classname": "lastpage"
-    },
- ] '>
-
-    </sugar-survey-viewer>
+]
+`;
 
 
 
-    <script type="module" src="./dist/sugar-survey-viewer.js"></script>
-</body>
-
-</html>

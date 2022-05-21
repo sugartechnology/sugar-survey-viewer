@@ -10,6 +10,8 @@ export class SurveyStartManager {
 
     base: SugarSurveyViewerElementBase;
     localstoragename: string = "simurgsurvey";
+    starterPages: any = [];
+    starterPagesElement: any = [];
 
     constructor(base: SugarSurveyViewerElementBase) {
         this.base = base;
@@ -18,31 +20,87 @@ export class SurveyStartManager {
 
     start() {
 
-        let startSurvey = starter_container_template.content.cloneNode(true) as HTMLTemplateElement;
-        this.base.startPage = startSurvey.querySelector(".maincontainer");
+        let pages = [];
+        this.base.pagesData.forEach(data => {
+            if (data.type === "starter") {
+                pages.push(data);
+            }
 
-        let startButton = startSurvey.querySelector(".startbutton");
-        startButton.addEventListener("click", this.showSecondPage.bind(this));
+        });
+
+        this.starterPages = pages;
+
+        let startSurvey = starter_container_template.content.cloneNode(true) as HTMLTemplateElement;
+        this.starterPages.forEach((element, index) => {
+
+            this.base.startPage = startSurvey.querySelector(element.classname);
+
+            if (element.img) {
+
+                let startPageData = this.base.pagesData[0];
+                let title = this.base.pagesData[0].title;
+                let text = this.base.pagesData[0].titleText;
+
+                let starterContainer = startSurvey.querySelector("." + startPageData.classname) as HTMLImageElement;
+                starterContainer.style.backgroundImage = "url(" + startPageData.img + ")";
+                starterContainer.style.display = "flex";
+
+                let starterText = starterContainer.querySelector(".titleText");
+                starterText.innerHTML = text;
+
+                let starterTitle = starterContainer.querySelector(".title");
+                starterTitle.innerHTML = title;
+
+                let startButton = starterContainer.querySelector(".startbutton");
+                if (startPageData.skippage) {
+                    startButton.setAttribute("next-page", startPageData.skippage);
+                    startButton.setAttribute("data-page-index", index);
+                    startButton.addEventListener("click", this.showNextPage.bind(this));
+                }
+
+                else {
+                    startButton.addEventListener("click", this.startSurvey.bind(this));
+                }
+
+            }
+        });
         this.base.shadowRoot.appendChild(startSurvey)
     }
 
     hide() {
         this.showSurveyContainer();
-        this.hideStarterPage();
-        this.hideWelcomePage();
+        this.hidePages();
     }
 
-    showSecondPage() {
+    searchPage(nameKey, myArray) {
+        for (var i = 0; i < myArray.length; i++) {
+            if (myArray[i].title === nameKey) {
+                return myArray[i];
+            }
+        }
+    }
 
-        this.showWelcomePage();
-        this.hideStarterPage();
+
+    showNextPage(event: MouseEvent) {
+
+        let button = event.currentTarget as HTMLElement;
+        let nextPageIndex = button.getAttribute("next-page");
+        let prevPageIndex = button.getAttribute("data-page-index");
+
+        var element = this.searchPage(nextPageIndex, this.starterPages);
+        let nextPage = this.base.shadowRoot.querySelector("." + element.classname) as HTMLElement;
+        nextPage.style.display = "flex";
+
+        let startButton = nextPage.querySelector(".startbutton");
+        startButton.addEventListener("click", this.startSurvey.bind(this));
+
+        let prevPage = this.starterPages[prevPageIndex];
+        this.hidePageData(prevPage);
     }
 
     startSurvey() {
 
-        this.hideStarterPage();
-        this.hideWelcomePage();
-
+        this.hidePages();
         this.showSurveyContainer();
         this.base.selectedpage = this.base.pageElements[0];
     }
@@ -51,33 +109,30 @@ export class SurveyStartManager {
     finishSurvey() {
         this.showLastPage();
         this.hideSurveyContainer();
-        this.sendSurveyData();
-        this.base.surveyfinished = true;
+
+        if (this.base.answers.get("surveytype") === "redirection")
+            this.redirectPage();
+        else {
+            this.sendSurveyData();
+            this.base.surveyfinished = true;
+        }
+
     }
 
-
-
-    showStarterPage() {
-        let firstpage = this.base.shadowRoot.querySelector(".firstpage") as HTMLElement;
-        firstpage.style.display = "none";
+    hidePageData(data) {
+        let page = this.base.shadowRoot.querySelector("." + data.classname) as HTMLElement;
+        page.style.display = "none";
     }
 
-    hideStarterPage() {
-        let firstpage = this.base.shadowRoot.querySelector(".firstpage") as HTMLElement;
-        firstpage.style.display = "none";
+    hidePages() {
+        this.starterPages.forEach((element) => {
+            this.hidePageData(element);
+        });
     }
 
-    hideWelcomePage() {
+    hidePage() {
         let secondpage = this.base.shadowRoot.querySelector(".secondpage") as HTMLElement;
         secondpage.style.display = "none";
-    }
-
-    showWelcomePage() {
-        let secondpage = this.base.shadowRoot.querySelector(".secondpage") as HTMLElement;
-        secondpage.style.display = "flex";
-
-        let startButton = secondpage.querySelector(".startbutton");
-        startButton.addEventListener("click", this.startSurvey.bind(this));
     }
 
 
@@ -120,5 +175,9 @@ export class SurveyStartManager {
                 }
             }
         };
+    }
+
+    redirectPage() {
+        alert("redirect me :d")
     }
 }

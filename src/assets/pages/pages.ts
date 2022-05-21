@@ -1,56 +1,76 @@
-export const pages = `[ 
+export const pages = `[
+
     {
-            "title": "Page3",
-            "column":"4",
-            "type":"page",
-            "maxanswer":"3",
-            "question": " Hangi alanda kullanmak istiyorsunuz? Geçerli olanları seçin:",
-            "answers": [
-                {
-                    "answer": "https://sugar.mncdn.com/simurgsurvey/page3/1.png",
-                    "description": "Koltuk Üzeri"
-                },
-                {
-                    "answer": "https://sugar.mncdn.com/simurgsurvey/page3/2.png",
-                    "description": "Yatak Odası"
-                },
-                {
-                    "answer": "https://sugar.mncdn.com/simurgsurvey/page3/3.png",
-                    "description": "Ofis"
-                },
-                {
-                    "answer": "https://sugar.mncdn.com/simurgsurvey/page3/4.png",
-                    "description": "Yemek Masası Üzeri"
-                },
-                {
-                    "answer": "https://sugar.mncdn.com/simurgsurvey/page3/5.png",
-                    "description": "Merdiven Boşluğu"
-                },
-                {
-                    "answer": "https://sugar.mncdn.com/simurgsurvey/page3/6.png",
-                    "description": "Antre"
-                },
-                {
-                    "answer": "https://sugar.mncdn.com/simurgsurvey/page3/7.png",
-                    "description": "Şömine Üzeri"
-                },
-                {
-                    "answer": "https://sugar.mncdn.com/simurgsurvey/page3/7.png",
-                    "description": "Konsol Üzeri"
-                }
-            ]
+        "title": "Page0",
+        "type": "starter",
+        "welcomePage": "false",
+        "img": "https://sugar.mncdn.com/simurgsurvey/starter/surveystart-min.png",
+        "skippage": "Page1",
+        "classname": "firstpage",
+        "text":" Satın almanız için özenle seçilmiş sanat eserlerini bulmak için sanat
+        danışmanlarımızdan rehberlik isteyin",
+        "titleText":"Ücretsiz Sanat Danışmanlığı"
+    },
+
+    {
+        "title": "Page1",
+        "type": "starter",
+        "classname": "secondpage"
+    },
+
+
+    {
+        "title": "Page3",
+        "column": "4",
+        "type": "page",
+        "maxanswer": "8",
+        "question": " Hangi alanda kullanmak istiyorsunuz? Geçerli olanları seçin:",
+        "answers": [
+            {
+                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/1.png",
+                "description": "Koltuk Üzeri"
+            },
+            {
+                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/2.png",
+                "description": "Yatak Odası"
+            },
+            {
+                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/3.png",
+                "description": "Ofis"
+            },
+            {
+                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/4.png",
+                "description": "Yemek Masası Üzeri"
+            },
+            {
+                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/5.png",
+                "description": "Merdiven Boşluğu"
+            },
+            {
+                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/6.png",
+                "description": "Antre"
+            },
+            {
+                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/7.png",
+                "description": "Şömine Üzeri"
+            },
+            {
+                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/7.png",
+                "description": "Konsol Üzeri"
+            }
+        ]
     },
     {
-        "title":"page4",
-        "column":"2",
-        "type":"page",
-        "maxanswer":"1",
+        "title": "page4",
+        "column": "2",
+        "type": "page",
+        "maxanswer": "1",
         "question": "Hangi kategorileri tercih edersiniz?",
         "answers": [
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page4/1.png",
                 "description": "Modern",
-                "skippage":"page6"
+                "skippage": "page6"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page4/2.png",
@@ -58,12 +78,12 @@ export const pages = `[
                 "skippage": "page5"
             }
         ]
-    } ,
+    },
     {
-        "title":"page5",
-        "column":"5",
-        "type":"page",
-        "maxanswer":"3",
+        "title": "page5",
+        "column": "5",
+        "type": "page",
+        "maxanswer": "3",
         "question": "Modern seçim yapıldığında müşterinin karşısına aşağıdaki kategoriler gelecek",
         "answers": [
             {
@@ -107,12 +127,12 @@ export const pages = `[
                 "description": "Modern Hat Sanatı"
             }
         ]
-    } ,
+    },
     {
-        "title":"page6",
-        "column":"5",
-        "type":"page",
-        "maxanswer":"3",
+        "title": "page6",
+        "column": "5",
+        "type": "page",
+        "maxanswer": "3",
         "question": "Klasik seçim yapıldığında müşterinin karşısına aşağıdaki kategoriler gelecek",
         "answers": [
             {
@@ -158,10 +178,10 @@ export const pages = `[
         ]
     },
     {
-        "title":"page7",
-        "column":"3",
-        "type":"page",
-        "maxanswer":"3",
+        "title": "page7",
+        "column": "3",
+        "type": "page",
+        "maxanswer": "3",
         "question": "Belirli bir yönlendirmeye mi ihtiyacınız var? Geçerli olanları seçin:",
         "answers": [
             {
@@ -179,10 +199,10 @@ export const pages = `[
         ]
     },
     {
-        "title":"page7",
-        "column":"4",
-        "type":"page",
-        "maxanswer":"3",
+        "title": "page8",
+        "column": "4",
+        "type": "page",
+        "maxanswer": "4",
         "question": "Hangi ölçüyü arıyorsunuz? Geçerli olanları seçin",
         "answers": [
             {
@@ -204,14 +224,14 @@ export const pages = `[
         ]
     },
     {
-        "title":"page9",
-        "column":"3",
-        "type":"chechboxquestionspage",
-        "maxanswer":"3",
+        "title": "page9",
+        "column": "3",
+        "type": "chechboxquestionspage",
+        "maxanswer": "12",
         "question": "Fiyat Aralığı",
-        "filteroptions":[
-            {"filter":"Ilk fiyat"},
-            {"filter":"Son fiyat"}
+        "filteroptions": [
+            { "filter": "Ilk fiyat" },
+            { "filter": "Son fiyat" }
         ],
         "answers": [
             {
@@ -229,39 +249,47 @@ export const pages = `[
         ]
     },
     {
-        "title":"page10",
-        "column":"2",
-        "type":"form",
-        "maxanswer":"0",
+        "title": "page10",
+        "column": "2",
+        "type": "form",
+        "maxanswer": "12",
         "question": "Neredeyse bitirdiniz. Lütfen aşağıdaki alanları doldurun:",
-        "inputs":[
-            {"input":"Ad", "classname":"formInput" },
-            {"input":"Soyad" , "classname":"formInput"},
+        "inputs": [
+            { "input": "Ad", "classname": "formInput" },
+            { "input": "Soyad", "classname": "formInput" },
 
             {
-            "input":"Email",
-            "classname":"formInput"
+                "input": "Email",
+                "classname": "formInput"
             },
 
-            {"input":"Telefon",
-            "classname":"formInput"
+            {
+                "input": "Telefon",
+                "classname": "formInput"
             }
         ]
     },
     {
-        "title":"page11",
-        "column":"2",
-        "type":"messageform",
-        "maxanswer":"0",
+        "title": "page11",
+        "column": "2",
+        "lastpage": "true",
+        "type": "messageform",
+        "maxanswer": "0",
         "question": "Resimde yer almasını istediğiniz renkleri ve ayrıntıları gönderiniz.",
-        "inputs":[
+        "inputs": [
             {
-            "input":"Buraya yaz... ",
-            "classname":"messagetext"
-        }
+                "input": "Buraya yaz... ",
+                "classname": "messagetext"
+            }
         ]
-    }
-]`;
+    },
+    {
+        "title": "Page12",
+        "type": "starter",
+        "classname": "lastpage"
+    },
+]
+`;
 
 
 

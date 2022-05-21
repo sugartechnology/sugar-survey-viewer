@@ -58,7 +58,11 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
 
 
     initializePages() {
-        this.pagesData = JSON.parse(pages);
+
+        let pagedatas = this.getAttribute("pagedata").replace(" ", "");
+        this.pagesData = eval(pagedatas);
+
+        // this.pagesData = JSON.parse(pages);
         this.initilizeJson();
         this.startManager.start();
         this.createPages();
@@ -88,7 +92,6 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
 
 
     createPages() {
-
 
         let base = this;
         this.pagesData.forEach((pagedata: QuestionsData) => {
@@ -133,7 +136,7 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
         this.selectedpage = this.pageElements[index];
         this.fillLines();
 
-        if (index == lastIndex)
+        if (this.pageElements[index].data.lastpage === "true")
             this.replaceNextButton();
     }
 
@@ -210,6 +213,5 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
     onFinish() {
         this.dispatchEvent(new CustomEvent("finishsurvey"));
     }
-
 }
 

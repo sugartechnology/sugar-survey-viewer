@@ -53,6 +53,9 @@ export class HTMLQuestionsPageView implements PageView {
 
         this.data = data;
 
+        if (data.type == "starter")
+            return null;
+
         if (data.type == "page")
             this.createPageData();
 
@@ -285,7 +288,6 @@ export class HTMLQuestionsPageView implements PageView {
         let length = allCheckedAnswer.length;
         let maxLength = this.data.maxanswer;
         if (length >= maxLength) {
-            alert("max :" + maxLength);
             return false;
         }
         return true;

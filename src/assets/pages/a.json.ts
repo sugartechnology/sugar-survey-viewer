@@ -1,42 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>&lt;slide-viewer&gt;</title>
-    <meta charset="utf-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <style>
-
-    </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-
-<style>
-    body {
-        font-size: 10px;
-    }
-
-    #sugarSurveyViewer {
-
-        -webkit-box-pack: justify;
-        justify-content: space-between;
-        flex: 1 1 0%;
-        width: 100%;
-        min-height: 400px;
-        padding: 0px 30px;
-    }
-
-    @media (max-width: 1256px) {
-        .sugarSurveyViewer {
-            padding: 0px 15px;
-        }
-    }
-</style>
-
-<body>
-    <sugar-survey-viewer id="sugarSurveyViewer" type="paintingorder" type="form" pagedata='
-  [
+[
 
     {
         "title": "Page0",
@@ -44,9 +6,7 @@
         "welcomePage": "false",
         "img": "https://sugar.mncdn.com/simurgsurvey/starter/surveystart-min.png",
         "skippage": "Page1",
-        "classname": "firstpage",
-        "titleText":" Satın almanız için özenle seçilmiş sanat eserlerini bulmak için sanat danışmanlarımızdan rehberlik isteyin",
-        "title":"Ücretsiz Sanat Danışmanlığı"
+        "classname": "firstpage"
     },
 
     {
@@ -120,7 +80,7 @@
         "title": "page5",
         "column": "5",
         "type": "page",
-        "maxanswer": "3",
+        "maxanswer": "10",
         "question": "Modern seçim yapıldığında müşterinin karşısına aşağıdaki kategoriler gelecek",
         "answers": [
             {
@@ -169,7 +129,7 @@
         "title": "page6",
         "column": "5",
         "type": "page",
-        "maxanswer": "3",
+        "maxanswer": "10",
         "question": "Klasik seçim yapıldığında müşterinin karşısına aşağıdaki kategoriler gelecek",
         "answers": [
             {
@@ -236,7 +196,7 @@
         ]
     },
     {
-        "title": "page8",
+        "title": "page7",
         "column": "4",
         "type": "page",
         "maxanswer": "4",
@@ -311,7 +271,6 @@
         "column": "2",
         "type": "messageform",
         "maxanswer": "0",
-        "lastpage": "true",
         "question": "Resimde yer almasını istediğiniz renkleri ve ayrıntıları gönderiniz.",
         "inputs": [
             {
@@ -321,17 +280,11 @@
         ]
     },
     {
-        "title": "Page12",
+        "title": "Page2",
         "type": "starter",
         "classname": "lastpage"
     },
- ] '>
-
-    </sugar-survey-viewer>
+]
 
 
 
-    <script type="module" src="./dist/sugar-survey-viewer.js"></script>
-</body>
-
-</html>

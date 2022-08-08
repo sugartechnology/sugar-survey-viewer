@@ -1,7 +1,7 @@
 import SugarSurveyViewerElementBase from "./sugar-survey-viewer-base";
 
 export interface asnwerType {
-    answers: [{ answer: string, description: string }];
+    answers: [{ answer: string, description: string, ilterValue: string }];
 }
 export class AnswerManager {
 
@@ -19,15 +19,14 @@ export class AnswerManager {
         let detail = data.detail as unknown as asnwerType;
         let key = detail[0];
         let value = detail[1];
+        if (!value)
+            return;
 
         let values = this.base.answers.get(key) ? this.base.answers.get(key) : [];
         values.push(value);
         let uniqValues = [...new Set(values)];
-
         this.base.answers.set(key, uniqValues)
         this.updateLocalStorage();
-
-        console.log("this.baeans", this.base.answers);
     }
 
     getInputAnswerFromUser(data: MouseEvent) {
@@ -35,6 +34,10 @@ export class AnswerManager {
         let detail = data.detail as unknown as asnwerType;
         let key = detail[0];
         let value = detail[1];
+        /*if (!value) {
+            this.base.answers.set(key, undefined);
+            return;
+        }*/
         this.base.answers.set(key, value);
         this.updateLocalStorage();
     }

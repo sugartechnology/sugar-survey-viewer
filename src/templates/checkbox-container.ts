@@ -2,7 +2,7 @@ const checkbox_container_template = document.createElement('template');
 checkbox_container_template.innerHTML = `   
     <div class="template">
     
-    <div class="questions center">
+    <div class="questions">
 
     <span class="question"></span>
 

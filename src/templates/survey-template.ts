@@ -45,12 +45,11 @@ survey_template.innerHTML = `
         justify-content: space-evenly;
         margin: 1em;
         margin-top: 2em;
-        max-width: 470px;
         margin-left: auto;
         margin-right: auto;
       }
 
-      @media only screen and  (min-width: 320px) and (max-device-width : 568px)  {
+      @media only screen and (max-device-width : 568px)  {
 
         .answerline{
           flex-direction: column;
@@ -60,7 +59,7 @@ survey_template.innerHTML = `
           margin: 50px auto 100px !important;
         }
         .slider-index-lines{
-          margin: 30px auto 0px;
+          margin: 30px 1em 0px;
         }
         .answerContainer{
           width: 100%;
@@ -75,16 +74,28 @@ survey_template.innerHTML = `
           flex-direction: column;
           gap: 1em;
         }
+
         .messagetext{
-          width: 100% !important;
+          width: unset !important;
+        }
+
+        .answerline img{
+          width: 100%;
+          object-fit: contain;
+          object-position: 50% 50%;
+          height: 32vh;
+        }
+
+        .measurements img{
+          height: 18vh !important;
         }
       }
+    
 
       .navigators {
-        margin: 1em 8em 1em;
-        width: 100%;
+        margin:auto;
+        width: 80%;
         display: flex;
-        margin: 50px auto 100px;
         -webkit-box-pack: justify;
         justify-content: space-between;
         -webkit-box-align: center;
@@ -94,17 +105,24 @@ survey_template.innerHTML = `
       .navigators div {
         display: grid;
         justify-items: center;
-        width: 33%;
+        width: 30%;
       }
   
-      .navigators .toend {
+      .navigators .toend, .navigators .tostart{
         text-decoration: underline;
-        font-size: small !important;
         color: rgb(138, 138, 137);
         cursor:pointer;
-        text-transform: uppercase
+        text-transform: uppercase;
+        margin-right:1em;
       }
   
+      .navigate{
+        align-items: baseline;
+        display: flex !important;
+        text-align: center;
+        gap: 1em;
+        justify-content: center;
+      }
   
       .button {
       background-color: #3C3C3B;
@@ -132,10 +150,9 @@ survey_template.innerHTML = `
       }
 
 
-      .toend{
+      .toend, tostart{
        color: #989897;
        line-height:14px;
-       font-size:12px;
       }
 
       .question {
@@ -143,7 +160,7 @@ survey_template.innerHTML = `
         line-height: 30px;
         color: #1D1D1B;
         width: 100%;
-        margin:40px 0px 80px;
+        margin:30px 0px 40px;
         text-align: center;
       }
   
@@ -152,7 +169,7 @@ survey_template.innerHTML = `
         font-weight: 500;
         display: grid;
         justify-items: center;
-        font-family: arial;
+        font-size: 2.1em;
       }
   
       .answers {
@@ -161,7 +178,6 @@ survey_template.innerHTML = `
   
       .answerContainer {
         text-align: center;
-        flex: 1 0 21%;
         margin-right: 1em;
         display: flex;
         flex-direction: column;
@@ -169,7 +185,6 @@ survey_template.innerHTML = `
         cursor: pointer;
         position: relative;
         break-inside: avoid;
-        align-self: flex-end;
         gap:1em;
       }
 
@@ -181,6 +196,7 @@ survey_template.innerHTML = `
       justify-content: space-evenly;
       margin: 1em;
       margin-top: 2em;
+      overflow:scroll;
       }
 
       .template.enable{
@@ -199,7 +215,7 @@ survey_template.innerHTML = `
         left: 0px;
         background-color: rgba(255, 255, 255, 0.6);
         background-image: url(https://d3t95n9c6zzriw.cloudfront.net/art-advisory/aa-quiz/check.svg);
-        background-position: 50% 38%;
+        background-position: 50% 50%;
         background-repeat: no-repeat;
         width: 100%;
         height: 100%;
@@ -230,7 +246,7 @@ survey_template.innerHTML = `
 
     .checkboxinput {
       transform: scale(1.5);
-      margin-right: 1em !important;p
+      margin-right: 1em !important;
     }
     .checkboxanswercontainer {
       margin: 1em;
@@ -253,6 +269,8 @@ survey_template.innerHTML = `
       color: gray;
       border: 1px solid gray;
       padding-left: 1em;
+      margin-left: 1em;
+      margin-right: 1em;
     }
 
     .messagetext{
@@ -260,10 +278,39 @@ survey_template.innerHTML = `
       width: 80vh;
       height: 15vh;
     }
+
+    .formcontainer{
+
+    }
+
+    .kvkkcontainer{
+      margin-top: -20px;
+      margin-bottom: 30px;
+      display:none;
+    }
+
+
+    .form_file .kvkkcontainer{
+      display:block;
+   }
     .surveycontainer{
       display:none;
     }
+
+
+    .answerline img{
+      width: 100%;
+    }
+    .kvkk{
+      font-size: 17px;
+    }
+
+   .finish .finishText{
+    font-size : 15px !important;
+   }
     </style>
+
+
 
     <div class="surveycontainer">
     <div class="main-container">
@@ -284,8 +331,9 @@ survey_template.innerHTML = `
           <span>Geri</span>
         </button>
       </div>
-      <div class="toend">
-        <a class="toend toendtext">Sona Atla</a>
+      <div class="navigate">
+      <a class="tostart tostarttext">Başa Dön</a>
+      <a class="toend toendtext">Sona Atla</a>
       </div>
       <div class="next">
         <button class="button">
@@ -293,18 +341,17 @@ survey_template.innerHTML = `
         </button>
       </div>
 
-      <div class="finish" style="display:none">
-      <button class="button">
-        <span>İstek Gönderin</span>
-      </button>
+      <div class="finish" style="display:none;white-space: nowrap;">
+
+        <button class="button">
+          <span class="finishText">Tamamlayın</span>
+        </button>
+
       </div>
       
     </div>
   </div>
-
   </div>
-
-    
 `;
 
 

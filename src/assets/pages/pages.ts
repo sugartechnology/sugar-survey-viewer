@@ -1,61 +1,63 @@
-export const pages = `[
+export const pages = `
+    [
 
     {
-        "title": "Page0",
+        "title": "",
         "type": "starter",
         "welcomePage": "false",
         "img": "https://sugar.mncdn.com/simurgsurvey/starter/surveystart-min.png",
         "skippage": "Page1",
         "classname": "firstpage",
-        "text":" Satın almanız için özenle seçilmiş sanat eserlerini bulmak için sanat
-        danışmanlarımızdan rehberlik isteyin",
-        "titleText":"Ücretsiz Sanat Danışmanlığı"
+        "titleText":" Satın almanız için özenle seçilmiş sanat eserlerini bulmak için sanat danışmanlarımızdan rehberlik isteyin",
+        "title":"Ücretsiz Sanat Danışmanlığı"
     },
 
     {
         "title": "Page1",
         "type": "starter",
+        "surveyType":"consulting",
         "classname": "secondpage"
     },
-
 
     {
         "title": "Page3",
         "column": "4",
         "type": "page",
         "maxanswer": "8",
-        "question": " Hangi alanda kullanmak istiyorsunuz? Geçerli olanları seçin:",
+        "surveyType":"survey",
+        "question": "Hangi alanda kullanmak istiyorsunuz? Geçerli olanları seçin:",
+        "formQuestionTitle": "Kullanılmak istenen alanlar",
         "answers": [
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/1.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage1/koltuk.png",
                 "description": "Koltuk Üzeri"
             },
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/2.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage1/yatak_odasi.png",
                 "description": "Yatak Odası"
             },
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/3.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage1/ofis.png",
                 "description": "Ofis"
             },
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/4.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage1/yemek_masasi.png",
                 "description": "Yemek Masası Üzeri"
             },
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/5.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage1/merdiven_boslugu.png",
                 "description": "Merdiven Boşluğu"
             },
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/6.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage1/antre.png",
                 "description": "Antre"
             },
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/7.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage1/somine.png",
                 "description": "Şömine Üzeri"
             },
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page3/7.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage1/konsol_uzeri.png",
                 "description": "Konsol Üzeri"
             }
         ]
@@ -66,16 +68,22 @@ export const pages = `[
         "type": "page",
         "maxanswer": "1",
         "question": "Hangi kategorileri tercih edersiniz?",
+        "formQuestionTitle": "Kategori Tercihleri",
+        "filterType":"tdetay",
+        "filterId":"9",
+        "surveyType":"survey",
         "answers": [
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page4/1.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage2/modern.png",
                 "description": "Modern",
-                "skippage": "page6"
+                "skippage": "page6",
+                "filterValue":"131"
             },
             {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page4/2.png",
+                "answer": "https://sugar.mncdn.com/simurgsurvey/npage2/klasik.png",
                 "description": "Klasik",
-                "skippage": "page5"
+                "skippage": "page5",
+                "filterValue":"132"
             }
         ]
     },
@@ -83,49 +91,65 @@ export const pages = `[
         "title": "page5",
         "column": "5",
         "type": "page",
+        "filterType":"category",
         "maxanswer": "3",
-        "question": "Modern seçim yapıldığında müşterinin karşısına aşağıdaki kategoriler gelecek",
+        "filterId":"null",
+        "surveyType":"survey",
+        "classname":"untitled",
+        "question": "",
+        "formQuestionTitle": "Modern seçim kategorileri",
         "answers": [
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/1.png",
-                "description": "Modern İstanbul"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/2.png",
-                "description": "Soyut"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/3.png",
-                "description": "Çiçek ve Bitki"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/4.png",
-                "description": "Semazen"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/5.png",
-                "description": "Dekoratif"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/6.png",
-                "description": "Hayvanlar"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/7.png",
-                "description": "Manzara"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/8.png",
-                "description": "Figüratif"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/9.png",
-                "description": "Simurg Kuşu"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page5/10.png",
-                "description": "Modern Hat Sanatı"
-            }
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/modern_istanbul.png",
+            "description": "Modern İstanbul",
+            "filterValue":"203?"
+           
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/soyut.png",
+            "description": "Soyut",
+            "filterValue":"216"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/cicek_bitki.png",
+            "description": "Çiçek ve Bitki",
+            "filterValue":"199"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/semazen.png",
+            "description": "Semazen",
+            "filterValue":"203"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/dekoratif.png",
+            "description": "Dekoratif",
+            "filterValue":"629"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/hayvanlar.png",
+            "description": "Hayvanlar",
+            "filterValue":"209"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/manzara.png",
+            "description": "Manzara",
+            "filterValue":"208"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/figuratif.png",
+            "description": "Figüratif",
+            "filterValue":"890"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/simurg.png",
+            "description": "Simurg Kuşu",
+            "filterValue":"824"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/modern_istanbul.png",
+            "description": "Modern Hat Sanatı",
+            "filterValue":"843"
+        }
         ]
     },
     {
@@ -133,48 +157,63 @@ export const pages = `[
         "column": "5",
         "type": "page",
         "maxanswer": "3",
-        "question": "Klasik seçim yapıldığında müşterinin karşısına aşağıdaki kategoriler gelecek",
+        "filterType":"category",
+        "filterId":"null",
+        "surveyType":"survey",
+        "classname":"untitled",
+        "formQuestionTitle": "Klasik seçim kategorileri",
+        "question": "",
         "answers": [
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/1.png",
-                "description": "Klasik İstanbul"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/2.png",
-                "description": "Natürmort"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/3.png",
-                "description": "Hayvanlar"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/4.png",
-                "description": "Manzara"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/5.png",
-                "description": "Atatürk"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/6.png",
-                "description": "Figüratif"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/7.png",
-                "description": "Çiçek ve Bitki"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/8.png",
-                "description": "Kavramsal"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/9.png",
-                "description": "Semazen"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page6/10.png",
-                "description": "Klasik Hat Sanatı"
-            }
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/klasik_istanbul.png",
+            "description": "Klasik İstanbul",
+            "filterValue":"203"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/naturmort.png",
+            "description": "Natürmort",
+            "filterValue":"211"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/hayvanlar.png",
+            "description": "Hayvanlar",
+            "filterValue":"209"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/manzara.png",
+            "description": "Manzara",
+            "filterValue":"208"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/Ataturk.png",
+            "description": "Atatürk",
+            "filterValue":"649"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/figuratif.png",
+            "description": "Figüratif",
+            "filterValue":"890"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/cicek_bitki.png",
+            "description": "Çiçek ve Bitki",
+            "filterValue":"199"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/kavramsal.png",
+            "description": "Kavramsal",
+            "filterValue":"534"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/semazen.png",
+            "description": "Semazen",
+            "filterValue":"202"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage4/hat.png",
+            "description": "Klasik Hat Sanatı",
+            "filterValue":"844"
+        }
         ]
     },
     {
@@ -182,19 +221,27 @@ export const pages = `[
         "column": "3",
         "type": "page",
         "maxanswer": "3",
+        "surveyType":"survey",
         "question": "Belirli bir yönlendirmeye mi ihtiyacınız var? Geçerli olanları seçin:",
+        "formQuestionTitle": "Tercih Yönü",
+        "filterType":"tdetay",
+        "filterId":"4",
+        "classname":"measurements",
         "answers": [
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page7/yatay.png",
-                "description": "Yatay"
+                "description": "Yatay",
+                "filterValue":"99"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page7/dikey.png",
-                "description": "Dikey"
+                "description": "Dikey",
+                "filterValue":"98"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page7/kare.png",
-                "description": "Kare"
+                "description": "Kare",
+                "filterValue":"89"
             }
         ]
     },
@@ -203,49 +250,35 @@ export const pages = `[
         "column": "4",
         "type": "page",
         "maxanswer": "4",
+        "lastpage": "true",
+        "finishText":"Eserleri Gösterin",
+        "filterType":"measurement",
+        "surveyType":"survey",
         "question": "Hangi ölçüyü arıyorsunuz? Geçerli olanları seçin",
+        "formQuestionTitle": "Ölçü boyutu",
         "answers": [
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page8/1.png",
-                "description": "Küçük"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page8/2.png",
-                "description": "Orta"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page8/3.png",
-                "description": "Büyük"
-            },
-            {
-                "answer": "https://sugar.mncdn.com/simurgsurvey/page8/4.png",
-                "description": "Çok büyük"
-            }
-        ]
-    },
-    {
-        "title": "page9",
-        "column": "3",
-        "type": "chechboxquestionspage",
-        "maxanswer": "12",
-        "question": "Fiyat Aralığı",
-        "filteroptions": [
-            { "filter": "Ilk fiyat" },
-            { "filter": "Son fiyat" }
-        ],
-        "answers": [
-            {
-                "answer": "₺650,00 - ₺2.500,00"
-            },
-            {
-                "answer": "₺2.501,00 - ₺6.500,00"
-            },
-            {
-                "answer": "₺6.501,00 - ₺10.000,00"
-            },
-            {
-                "answer": "₺10.001,00 ve üzeri"
-            }
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage5/small.png",
+            "description": "Küçük",
+            "filterValue":"140,118,335,171,172,139,168,119,340,165"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage5/middle.png",
+            "description": "Orta",
+            "filterValue":"142,163,128,143,120,339,141,164,121,147,122,125,341,330,129,179,331,148"
+
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage5/big.png",
+            "description": "Büyük",
+            "filterValue":"138, 156, 149, 150, 123, 162, 160, 130, 158, 126, 342, 333, 161, 167, 343, 151,336"
+        },
+        {
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage5/bigger.png",
+            "description": "Ekstra Büyük",
+            "filterValue":"337, 154, 328, 153, 327, 338, 93, 127, 159, 177, 176, 326, 152, 332"
+
+        }
         ]
     },
     {
@@ -253,19 +286,24 @@ export const pages = `[
         "column": "2",
         "type": "form",
         "maxanswer": "12",
+        "surveyType":"consulting",
+        "classname":"form_file",
         "question": "Neredeyse bitirdiniz. Lütfen aşağıdaki alanları doldurun:",
+        "formQuestionTitle": "Form: ",
         "inputs": [
-            { "input": "Ad", "classname": "formInput" },
-            { "input": "Soyad", "classname": "formInput" },
+            { "input": "Ad:", "classname": "formInput" },
+            { "input": "Soyad:", "classname": "formInput" },
 
             {
-                "input": "Email",
-                "classname": "formInput"
+                "input": "E-mail:",
+                "classname": "formInput",
+                "type":"email"
             },
 
             {
-                "input": "Telefon",
-                "classname": "formInput"
+                "input": "Telefon:",
+                "classname": "formInput",
+                "type":"phonenumber"
             }
         ]
     },
@@ -273,9 +311,12 @@ export const pages = `[
         "title": "page11",
         "column": "2",
         "lastpage": "true",
+        "finishText":"Istek Gönderin",
         "type": "messageform",
         "maxanswer": "0",
+        "surveyType":"consulting",
         "question": "Resimde yer almasını istediğiniz renkleri ve ayrıntıları gönderiniz.",
+        "formQuestionTitle": "Istenen Resim Özellikleri",
         "inputs": [
             {
                 "input": "Buraya yaz... ",
@@ -287,7 +328,7 @@ export const pages = `[
         "title": "Page12",
         "type": "starter",
         "classname": "lastpage"
-    },
+    }
 ]
 `;
 

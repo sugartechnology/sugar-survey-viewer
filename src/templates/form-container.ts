@@ -1,5 +1,6 @@
 const form_container_template = document.createElement('template');
 form_container_template.innerHTML = `   
+
     <div class="template">
     
     <div class="questions">
@@ -8,9 +9,20 @@ form_container_template.innerHTML = `
 
     </div>
 
+    <div class="formcontainer">
+
     <div class="answers">
 
-      
+    </div>
+
+
+    <div class="kvkkcontainer">
+
+    <input type="checkbox" id="kvkk" name="kvkk" value="kvkk">
+    <label for="kvkk" class="kvkk">KVKK Onay</label>
+    
+  <div>
+
     </div>
     </div>
    

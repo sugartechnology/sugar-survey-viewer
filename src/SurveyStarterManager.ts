@@ -1,6 +1,5 @@
-import { QuestionsData } from "./HtmlPageView";
 import SugarSurveyViewerElementBase, { BASE_SERVICE_API_URL } from "./sugar-survey-viewer-base";
-import starter_container_template from "./templates/start-container";
+import starter_container_template from "./templates/static-pages";
 
 export interface asnwerType {
     answers: [{ answer: string, description: string }];
@@ -25,11 +24,9 @@ export class SurveyStartManager {
             if (data.type === "starter") {
                 pages.push(data);
             }
-
         });
 
         this.starterPages = pages;
-
         let startSurvey = starter_container_template.content.cloneNode(true) as HTMLTemplateElement;
         this.starterPages.forEach((element, index) => {
 
@@ -38,33 +35,45 @@ export class SurveyStartManager {
             if (element.img) {
 
                 let startPageData = this.base.pagesData[0];
-                let title = this.base.pagesData[0].title;
-                let text = this.base.pagesData[0].titleText;
 
                 let starterContainer = startSurvey.querySelector("." + startPageData.classname) as HTMLImageElement;
-                starterContainer.style.backgroundImage = "url(" + startPageData.img + ")";
                 starterContainer.style.display = "flex";
 
-                let starterText = starterContainer.querySelector(".titleText");
-                starterText.innerHTML = text;
+                let startButtons = starterContainer.querySelectorAll(".startbutton");
+                startButtons.forEach(startButton => {
 
-                let starterTitle = starterContainer.querySelector(".title");
-                starterTitle.innerHTML = title;
-
-                let startButton = starterContainer.querySelector(".startbutton");
-                if (startPageData.skippage) {
-                    startButton.setAttribute("next-page", startPageData.skippage);
-                    startButton.setAttribute("data-page-index", index);
-                    startButton.addEventListener("click", this.showNextPage.bind(this));
-                }
-
-                else {
-                    startButton.addEventListener("click", this.startSurvey.bind(this));
-                }
+                    if (startButton.getAttribute("surveyType") === "consulting") {
+                        startButton.addEventListener("click", this.startConsultingSurvey.bind(this))
+                    }
+                    else {
+                        startButton.addEventListener("click", this.startTypeSurvey.bind(this));
+                    }
+                });
 
             }
         });
         this.base.shadowRoot.appendChild(startSurvey)
+    }
+
+    showFirstPage() {
+        let startPageData = this.base.pagesData[0];
+        let starterContainer = this.base.querySelector("." + startPageData.classname) as HTMLImageElement;
+        starterContainer.style.display = "flex";
+    }
+
+    startConsultingSurvey(thizz) {
+        this.base.surveyType = "consulting";
+        this.base.dispatchEvent(new CustomEvent("type-updated", { detail: "consulting" }))
+        this.base.localStorageManager.setKey("surveyType", "consulting");
+        this.showNextPage(thizz);
+    }
+
+
+    startTypeSurvey() {
+        this.base.surveyType = "survey";
+        this.base.dispatchEvent(new CustomEvent("type-updated", { detail: "survey" }))
+        this.base.localStorageManager.setKey("surveyType", "survey");
+        this.startSurvey();
     }
 
     hide() {
@@ -99,7 +108,6 @@ export class SurveyStartManager {
     }
 
     startSurvey() {
-
         this.hidePages();
         this.showSurveyContainer();
         this.base.selectedpage = this.base.pageElements[0];
@@ -107,17 +115,20 @@ export class SurveyStartManager {
 
 
     finishSurvey() {
-        this.showLastPage();
-        this.hideSurveyContainer();
 
-        if (this.base.answers.get("surveytype") === "redirection")
+        if (this.base.surveyType == "survey") {
             this.redirectPage();
-        else {
-            this.sendSurveyData();
-            this.base.surveyfinished = true;
+            return;
         }
-
+        else {
+            this.hideSurveyContainer();
+            this.base.surveyfinished = true;
+            this.sendSurveyData();
+            this.hidePages();
+            this.showLastPage();
+        }
     }
+
 
     hidePageData(data) {
         let page = this.base.shadowRoot.querySelector("." + data.classname) as HTMLElement;
@@ -147,13 +158,24 @@ export class SurveyStartManager {
     }
 
     showLastPage() {
+
         let page = this.base.querySelector(".lastpage") as HTMLDivElement;
         page.style.display = "flex";
+
+        let redirectButton = page.querySelector(".redirect");
+        redirectButton?.addEventListener("click", this.redirectPage.bind(this));
+
+        let submitDataButton = page.querySelector(".submitData");
+        //submitDataButton.addEventListener("click", this.sendSurveyData.bind(this));
     }
+
 
     sendSurveyData() {
 
-        const answerObject = Object.fromEntries(this.base.answers);
+        console.log("times")
+        let answerJSon = this.base.answers;
+        answerJSon.delete("filteredpages");
+        const answerObject = Object.fromEntries(answerJSon);
         let answers = JSON.stringify(answerObject);
         let fullName = this.base.answers.get("Ad") + " " + this.base.answers.get("Soyad");
         let email = this.base.answers.get("Email");
@@ -164,6 +186,7 @@ export class SurveyStartManager {
             email: email,
             phoneNumber: phoneNumber,
         }
+
         const xhr = new XMLHttpRequest();
         xhr.open("POST", BASE_SERVICE_API_URL + '/api/survey/save');
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -175,9 +198,12 @@ export class SurveyStartManager {
                 }
             }
         };
+        //after try at home button;
+        //this.redirectPage();
     }
 
     redirectPage() {
-        alert("redirect me :d")
+        window.open(this.base.filteredPRoductUrl, "_self")
     }
+
 }

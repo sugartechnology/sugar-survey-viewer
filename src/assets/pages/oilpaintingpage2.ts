@@ -1,4 +1,7 @@
-export const pages = `[
+export const pages = `
+
+
+[
 
     {
         "title": "Page0",
@@ -56,12 +59,14 @@ export const pages = `[
         "column": "2",
         "type": "page",
         "maxanswer": "1",
+        "filterId":"9",
         "question": "Hangi kategorileri tercih edersiniz?",
+        "FilterType":"tdetay",
         "answers": [
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page4/1.png",
                 "description": "Modern",
-                "skippage": "page4"
+                "skippage": "page6"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page4/2.png",
@@ -74,48 +79,61 @@ export const pages = `[
         "title": "page4",
         "column": "5",
         "type": "page",
+        "classname":"untitled",
+        "FilterType":"kategori",
         "maxanswer": "3",
-        "question": "Modern seçim yapıldığında müşterinin karşısına aşağıdaki kategoriler gelecek",
+        "question": "",
         "answers": [
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/1.png",
-                "description": "Modern İstanbul"
+                "description": "Modern İstanbul",
+                "filterType":"203?"
+               
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/2.png",
-                "description": "Soyut"
+                "description": "Soyut",
+                "filterType":"216"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/3.png",
-                "description": "Çiçek ve Bitki"
+                "description": "Çiçek ve Bitki",
+                "filterType":"199"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/4.png",
-                "description": "Semazen"
+                "description": "Semazen",
+                "filterType":"203"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/5.png",
-                "description": "Dekoratif"
+                "description": "Dekoratif",
+                "filterType":"629"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/6.png",
-                "description": "Hayvanlar"
+                "description": "Hayvanlar",
+                "filterType":"209"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/7.png",
-                "description": "Manzara"
+                "description": "Manzara",
+                "filterType":"208"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/8.png",
-                "description": "Figüratif"
+                "description": "Figüratif",
+                "filterType":"890"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/9.png",
-                "description": "Simurg Kuşu"
+                "description": "Simurg Kuşu",
+                "filterType":"824"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page5/10.png",
-                "description": "Modern Hat Sanatı"
+                "description": "Modern Hat Sanatı",
+                "filterType":"843"
             }
         ]
     },
@@ -124,47 +142,59 @@ export const pages = `[
         "column": "5",
         "type": "page",
         "maxanswer": "3",
-        "question": "Klasik seçim yapıldığında müşterinin karşısına aşağıdaki kategoriler gelecek",
+        "classname":"untitled",
+        "FilterType":"kategori",
+        "question": "",
         "answers": [
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/1.png",
-                "description": "Klasik İstanbul"
+                "description": "Klasik İstanbul",
+                "filterType":"203"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/2.png",
-                "description": "Natürmort"
+                "description": "Natürmort",
+                "filterType":"211"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/3.png",
-                "description": "Hayvanlar"
+                "description": "Hayvanlar",
+                "filterType":"209"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/4.png",
-                "description": "Manzara"
+                "description": "Manzara",
+                "filterType":"208"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/5.png",
-                "description": "Atatürk"
+                "description": "Atatürk",
+                "filterType":"649"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/6.png",
-                "description": "Figüratif"
+                "description": "Figüratif",
+                "filterType":"890"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/7.png",
-                "description": "Çiçek ve Bitki"
+                "description": "Çiçek ve Bitki",
+                "filterType":"199"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/8.png",
-                "description": "Kavramsal"
+                "description": "Kavramsal",
+                "filterType":"534"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/9.png",
-                "description": "Semazen"
+                "description": "Semazen",
+                "filterType":"202"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page6/10.png",
-                "description": "Klasik Hat Sanatı"
+                "description": "Klasik Hat Sanatı",
+                "filterValue":"844"
             }
         ]
     },
@@ -173,19 +203,24 @@ export const pages = `[
         "column": "3",
         "type": "page",
         "maxanswer": "3",
+        "FilterType":"tdetay",
+        "filterId":"4",
         "question": "Belirli bir yönlendirmeye mi ihtiyacınız var? Geçerli olanları seçin:",
         "answers": [
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page7/yatay.png",
-                "description": "Yatay"
+                "description": "Yatay",
+                "filterType":"99"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page7/dikey.png",
                 "description": "Dikey"
+                "filterType":"98"
             },
             {
                 "answer": "https://sugar.mncdn.com/simurgsurvey/page7/kare.png",
-                "description": "Kare"
+                "description": "Kare",
+                "filterType":"89"
             }
         ]
     },
@@ -194,6 +229,7 @@ export const pages = `[
         "column": "4",
         "type": "page",
         "maxanswer": "4",
+        "FilterType":"measurement",
         "question": "Hangi ölçüyü arıyorsunuz? Geçerli olanları seçin",
         "answers": [
             {
@@ -219,28 +255,42 @@ export const pages = `[
         "column": "3",
         "type": "chechboxquestionspage",
         "maxanswer": "12",
-        "lastpage":"true",
+        "FilterType":"price",
         "question": "Fiyat Aralığı",
         "filteroptions": [
-            { "filter": "Ilk fiyat" },
-            { "filter": "Son fiyat" }
+            { 
+                "filter": "Ilk fiyat",
+                "filterType":"min"
+            },
+            {
+                "filter": "Son fiyat",
+                "filterType":"max"
+            }
         ],
         "answers": [
             {
-                "answer": "₺650,00 - ₺2.500,00"
+                "answer": "₺650,00 - ₺2.500,00",
+                "min":"₺650,00",
+                "max":"₺2.500,00"
             },
             {
-                "answer": "₺2.501,00 - ₺6.500,00"
+                "answer": "₺2.501,00 - ₺6.500,00",
+                "max":" 6.500,00",
+                "min":"2.501,00"
             },
             {
-                "answer": "₺6.501,00 - ₺10.000,00"
+                "answer": "₺6.501,00 - ₺10.000,00",
+                "max":"10.000,00",
+                "min":"6.501,00"
             },
             {
                 "answer": "₺10.001,00 ve üzeri"
+                "min":"10.001,00"
             }
         ]
     },
 ]
+
 `;
 
 

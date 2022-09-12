@@ -165,10 +165,13 @@ export class SurveyStartManager {
         let redirectButton = page.querySelector(".redirect");
         redirectButton?.addEventListener("click", this.redirectPage.bind(this));
 
-        let submitDataButton = page.querySelector(".submitData");
-        //submitDataButton.addEventListener("click", this.sendSurveyData.bind(this));
+        let submitDataButton = page.querySelector("#try_at_home");
+        submitDataButton.addEventListener("click", this.onTheEnd.bind(this));
     }
 
+    onTheEnd() {
+        window.open("https://www.youtube.com/watch?v=0qbBPj3AbgA");
+    }
 
     sendSurveyData() {
 

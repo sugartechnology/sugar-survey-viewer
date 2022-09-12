@@ -10,10 +10,8 @@ starter_container_template.innerHTML = `
         color: #1D1D1B !important;
         align-items: center;
         gap: 2em;
-        transform: translateY(25%);
+        /*transform: translateY(25%);*/
     }
-
-
 
     .firstFullpage {
         height: 100vh !important;
@@ -50,7 +48,9 @@ starter_container_template.innerHTML = `
     }
 
     .lastpageTitle {
-        font-size: 45px;
+        font-size: 2em;
+        font-style: italic;
+        margin-bottom: 2em;
     }
 
     .titleText{
@@ -74,7 +74,7 @@ starter_container_template.innerHTML = `
         .description,  .firstpage {
             transform: translateY(0) !important;
         }
-        .products span br, .survey span br{
+        .surveyProducts span br, .survey span br{
             display:none;
         }
         .titleText{
@@ -93,6 +93,7 @@ starter_container_template.innerHTML = `
         color: black;
         width:100px;
         margin-top:1em;
+        font-size: 50% !important;
 
     }
 
@@ -109,15 +110,16 @@ starter_container_template.innerHTML = `
         align-items: center;
         gap: 2em;
         flex-direction: column;
-        margin: 4em;
+        margin-top: 5em;
         display: flex;
-        position: fixed;
+        
+        /*position: fixed;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);*/
+
         top: 50%;
         left: 50%;
-        width: 90%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        margin:auto;
+        /*width: 90%;*/
     }
 
     .secondpagetext {
@@ -127,7 +129,7 @@ starter_container_template.innerHTML = `
 
     .secondtitletext {
         line-height: 30px;
-        font-size: 2.4em;
+        font-size: 20px;
     }
 
     /*lastpage*/
@@ -140,7 +142,7 @@ starter_container_template.innerHTML = `
         align-items: center;
     }
 
-    .products,
+    .surveyProducts,
     .survey {
         position: relative;
     }
@@ -167,7 +169,7 @@ starter_container_template.innerHTML = `
         text-align: center;
        
     }
-    .products .imagetext{
+    .surveyProducts .imagetext{
         font-size: 30px;
     }
   
@@ -191,7 +193,7 @@ starter_container_template.innerHTML = `
 
     <div class="firstpage">
 
-    <div class="products" style="background-repeat: no-repeat;">
+    <div class="surveyProducts" style="background-repeat: no-repeat;">
     <div class="surveyImageContainer">
          <img class="image" alt=""
             src="https://sugar.mncdn.com/simurgsurvey/starter/simurg1st.png" />
@@ -203,7 +205,7 @@ starter_container_template.innerHTML = `
             <br>
             Seçmeye Başlayın!</span>
             <br>
-            <button class="startbutton"><span class="startbuttontext center">Başla</span></button>
+            <button class="startbutton" type="button"><span class="startbuttontext">Başla</span></button>
             </div>
         </div>
       </div>
@@ -219,16 +221,17 @@ starter_container_template.innerHTML = `
             <span class="titleText"> Satın Almanız İçin Özenle Seçilmiş
             <br>
              Sanat Eserlerini Bulmak İçin 
-             <br>
+            <br>
               Sanat
                 Danışmanlarımızdan <br>
                 Rehberlik İsteyin</span>
-                <br>
+            <br>
           <button class="startbutton"
             surveyType="consulting"
-             next-page="Page1"
-              data-page-index="0"><span
-               class="startbuttontext center">Başla</span>
+            next-page="Page1"
+            type="button"
+            data-page-index="0"><span
+            class="startbuttontext">Başla</span>
             </button>
             </div>
         </div>
@@ -241,7 +244,13 @@ starter_container_template.innerHTML = `
             <div class="imagetext">
                 <span class="title"></span>
                 <span class="titleText"></span>
-                <button class="startbutton" next-page="page1" data-page-index="0"><span class="startbuttontext center">Başla</span></button>
+                <button 
+                class="startbutton"
+                type="button"
+                next-page="page1"
+                data-page-index="0">
+                    <span class="startbuttontext">Başla</span>
+                </button>
             </div>
 
             <div
@@ -260,7 +269,7 @@ starter_container_template.innerHTML = `
                 <br>
                 Başlayalım!</span>
                 <br>
-            <button class="startbutton"><span class="startbuttontext center">Başla</span></button>
+            <button class="startbutton" type="button"><span class="startbuttontext center">Başla</span></button>
         </div>
 
         <div class="lastpage" style="display:none">
@@ -274,10 +283,7 @@ starter_container_template.innerHTML = `
 
             <div class="finish">
 
-                <!--<button class="startbutton"><span class="startbuttontext center">Evinde Gör uygulamasını kullan</span></button>-->
-
-           
-                <button class="button">
+                <button class="button" type="button" id="try_at_home" target="_blank">
                     <span class="finishText submitData">Evinde Gör Uygulamasını Kullan </span>
                 </button>
 

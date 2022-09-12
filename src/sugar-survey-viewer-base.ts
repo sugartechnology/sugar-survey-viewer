@@ -294,6 +294,7 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
                 lastIndex = index;
         });
         this.movePageToIndex(lastIndex);
+        window.scrollTo(100, 100);
     }
 
     moveToStart() {
@@ -302,6 +303,7 @@ export default class SugarSurveyViewerElementBase extends UpdatingElement {
         this.startManager.showFirstPage();
         this.startManager.hideSurveyContainer();
         this.replaceFinishButton();
+        window.scrollTo(100, 100)
         this.dispatchEvent(new CustomEvent("moved-to-start"));
 
     }

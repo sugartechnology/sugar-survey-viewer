@@ -169,7 +169,7 @@ survey_template.innerHTML = `
         font-weight: 500;
         display: grid;
         justify-items: center;
-        font-size: 2.1em;
+        font-size: 20px;
       }
   
       .answers {
@@ -196,7 +196,7 @@ survey_template.innerHTML = `
       justify-content: space-evenly;
       margin: 1em;
       margin-top: 2em;
-      overflow:scroll;
+
       }
 
       .template.enable{
@@ -302,7 +302,7 @@ survey_template.innerHTML = `
       width: 100%;
     }
     .kvkk{
-      font-size: 17px;
+      font-size: 1em;
     }
 
    .finish .finishText{
@@ -327,7 +327,9 @@ survey_template.innerHTML = `
 
     <div class="navigators">
       <div class="prev">
-        <button class="button">
+        <button 
+        class="button"
+        type="button">
           <span>Geri</span>
         </button>
       </div>
@@ -336,14 +338,16 @@ survey_template.innerHTML = `
       <a class="toend toendtext">Sona Atla</a>
       </div>
       <div class="next">
-        <button class="button">
+        <button
+        class="button"
+        type="button">
           <span>Sonraki</span>
         </button>
       </div>
 
       <div class="finish" style="display:none;white-space: nowrap;">
 
-        <button class="button">
+        <button class="button" type="button">
           <span class="finishText">Tamamlayın</span>
         </button>
 

@@ -241,9 +241,9 @@ export class FilterManager {
 
         let baseUrl = "https://www.simurgsanatevi.com/" + "yagli-boya-tablolar?";
 
-
         let categories = localStorage.getItem("category");
         let filters = localStorage.getItem("filter");
+        filters = filters?.replace(" ", "");
         let url = baseUrl + "kategori=" + categories + "&filtre=" + filters;
 
         let max = localStorage.getItem("simurgsurveymax");

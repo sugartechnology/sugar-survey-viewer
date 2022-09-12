@@ -48,6 +48,7 @@ export class PopupTemplate implements PopupInterface {
     }
 
     show() {
+        this.popupModal.scrollIntoView();
         this.popupModal.classList.add("enabled");
     }
 

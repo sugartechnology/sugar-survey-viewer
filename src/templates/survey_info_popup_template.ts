@@ -110,7 +110,7 @@ survey_popup_info_template.innerHTML = `
 <div class="modalContent">
   <p class="modalContentText"></p>
 
-  <button class="actionbutton"></button>
+  <button class="actionbutton" type="button"></button>
 
 </div>
 </div>

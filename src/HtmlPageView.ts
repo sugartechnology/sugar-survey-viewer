@@ -368,7 +368,7 @@ export class HTMLQuestionsPageView implements PageView {
         let length = allCheckedAnswer.length;
         let maxLength = this.data.maxanswer;
         if (length >= maxLength) {
-            window.scrollTo(0, 0)
+            //window.scrollTo(0, 0)
             this.base.showPopup("Max " + maxLength + " adet seçim yapabilirsiniz.")
             return false;
         }

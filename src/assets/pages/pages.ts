@@ -146,7 +146,7 @@ export const pages = `
             "filterValue":"824"
         },
         {
-            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/modern_istanbul.png",
+            "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/hat.png",
             "description": "Modern Hat Sanatı",
             "filterValue":"843"
         }
@@ -256,6 +256,7 @@ export const pages = `
         "surveyType":"survey",
         "question": "Hangi ölçüyü arıyorsunuz? Geçerli olanları seçin",
         "formQuestionTitle": "Ölçü boyutu",
+        "filterId":"7",
         "answers": [
         {
             "answer": "https://sugar.mncdn.com/simurgsurvey/npage5/small.png",

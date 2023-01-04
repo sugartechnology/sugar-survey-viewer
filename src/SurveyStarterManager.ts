@@ -67,12 +67,15 @@ export class SurveyStartManager {
 
         if (action === "select") {
             // this.startConsultingSurvey(this);
+            this.base.dispatchEvent(new CustomEvent("moved-to-start"));
             window.addEventListener("load", this.startTypeSurveyOnLoad.bind(this));
         }
 
         if (action === "consalt") {
             // this.startConsultingSurvey(this);
+            this.base.dispatchEvent(new CustomEvent("moved-to-start"));
             window.addEventListener("load", this.startConsultingSurveyOnLoad.bind(this));
+
         }
 
     }

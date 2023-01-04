@@ -102,7 +102,7 @@ export const pages = `
         {
             "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/modern_istanbul.png",
             "description": "Modern İstanbul",
-            "filterValue":"203?"
+            "filterValue":"203"
            
         },
         {
@@ -118,7 +118,7 @@ export const pages = `
         {
             "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/semazen.png",
             "description": "Semazen",
-            "filterValue":"203"
+            "filterValue":"202"
         },
         {
             "answer": "https://sugar.mncdn.com/simurgsurvey/npage3/dekoratif.png",
@@ -261,23 +261,23 @@ export const pages = `
         {
             "answer": "https://sugar.mncdn.com/simurgsurvey/npage5/small.png",
             "description": "Küçük",
-            "filterValue":"140,118,335,171,172,139,168,119,340,165"
+            "filterValue":"118,140,335,171,172,139,170,141,168,119,340,165,142,163,128,120,174,164"
         },
         {
             "answer": "https://sugar.mncdn.com/simurgsurvey/npage5/middle.png",
             "description": "Orta",
-            "filterValue":"142,163,128,143,120,339,141,164,121,147,122,125,341,330,129,179,331,148"
+            "filterValue":"143,356,339,121,345,357,144,329,147,122,125,341,330,175,138,156,354,352,347,123,162,160,130,350,161"
 
         },
         {
             "answer": "https://sugar.mncdn.com/simurgsurvey/npage5/big.png",
             "description": "Büyük",
-            "filterValue":"138, 156, 149, 150, 123, 162, 160, 130, 158, 126, 342, 333, 161, 167, 343, 151,336"
+            "filterValue":"145,146,129,179,331,148,149,346,158,150,158,92,332,152,326,351,176,177,159,353,328,126,344,342,167,343,151,336"
         },
         {
             "answer": "https://sugar.mncdn.com/simurgsurvey/npage5/bigger.png",
             "description": "Ekstra Büyük",
-            "filterValue":"337, 154, 328, 153, 327, 338, 93, 127, 159, 177, 176, 326, 152, 332"
+            "filterValue":"150,333,355,127,337,154,153"
 
         }
         ]

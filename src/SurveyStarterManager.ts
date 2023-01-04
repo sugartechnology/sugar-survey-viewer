@@ -26,11 +26,19 @@ export class SurveyStartManager {
             }
         });
 
+        const queryString = window.location.search;
+        console.log(queryString);
+        const urlParams = new URLSearchParams(queryString);
+        const action = urlParams.get('action')
+        console.log(action);
+
         this.starterPages = pages;
         let startSurvey = starter_container_template.content.cloneNode(true) as HTMLTemplateElement;
         this.starterPages.forEach((element, index) => {
 
             this.base.startPage = startSurvey.querySelector(element.classname);
+
+         
 
             if (element.img) {
 
@@ -40,19 +48,28 @@ export class SurveyStartManager {
                 starterContainer.style.display = "flex";
 
                 let startButtons = starterContainer.querySelectorAll(".startbutton");
+
+               
                 startButtons.forEach(startButton => {
 
-                    if (startButton.getAttribute("surveyType") === "consulting") {
-                        startButton.addEventListener("click", this.startConsultingSurvey.bind(this))
+                    if (startButton.getAttribute("surveyType") === "consulting" || action=== "consalt") {
+                        startButton.addEventListener("load", this.startConsultingSurvey.bind(this))
                     }
                     else {
-                        startButton.addEventListener("click", this.startTypeSurvey.bind(this));
+                        startButton.addEventListener("load", this.startTypeSurvey.bind(this));
                     }
                 });
 
             }
         });
+
         this.base.shadowRoot.appendChild(startSurvey)
+        
+        if (action=== "select"){
+           // this.startConsultingSurvey(this);
+            document.getElementsByTagName("body")[0].addEventListener("load",this.startConsultingSurvey);
+        }
+       
     }
 
     showFirstPage() {

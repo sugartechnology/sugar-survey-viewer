@@ -49,14 +49,14 @@ export class SurveyStartManager {
 
                 let startButtons = starterContainer.querySelectorAll(".startbutton");
 
-               
+
                 startButtons.forEach(startButton => {
 
-                    if (startButton.getAttribute("surveyType") === "consulting" || action=== "consalt") {
-                        startButton.addEventListener("load", this.startConsultingSurvey.bind(this))
+                    if (startButton.getAttribute("surveyType") === "consulting") {
+                        startButton.addEventListener("click", this.startConsultingSurvey.bind(this))
                     }
                     else {
-                        startButton.addEventListener("load", this.startTypeSurvey.bind(this));
+                        startButton.addEventListener("click", this.startTypeSurvey.bind(this));
                     }
                 });
 
@@ -64,18 +64,47 @@ export class SurveyStartManager {
         });
 
         this.base.shadowRoot.appendChild(startSurvey)
-        
-        if (action=== "select"){
-           // this.startConsultingSurvey(this);
-            document.getElementsByTagName("body")[0].addEventListener("load",this.startConsultingSurvey);
+
+        if (action === "select") {
+            // this.startConsultingSurvey(this);
+            window.addEventListener("load", this.startTypeSurveyOnLoad.bind(this));
         }
-       
+
+        if (action === "consalt") {
+            // this.startConsultingSurvey(this);
+            window.addEventListener("load", this.startConsultingSurveyOnLoad.bind(this));
+        }
+
     }
 
     showFirstPage() {
         let startPageData = this.base.pagesData[0];
         let starterContainer = this.base.querySelector("." + startPageData.classname) as HTMLImageElement;
         starterContainer.style.display = "flex";
+    }
+
+    startConsultingSurveyOnLoad(e) {
+
+        var buttons = this.base.querySelectorAll(".startbutton");
+        buttons.forEach(button => {
+            var b = button as HTMLButtonElement;
+            if (b.getAttribute("surveyType") === "consulting") {
+                b.click();
+            }
+        });
+
+    }
+
+    startTypeSurveyOnLoad(e) {
+
+        var buttons = this.base.querySelectorAll(".startbutton");
+        buttons.forEach(button => {
+            var b = button as HTMLButtonElement;
+            if (b.getAttribute("surveyType") !== "consulting") {
+                b.click();
+            }
+        });
+
     }
 
     startConsultingSurvey(thizz) {
